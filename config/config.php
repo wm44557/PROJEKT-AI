@@ -3,9 +3,9 @@
 return [
     'db' => [
         'host' => 'localhost',
-        'database' => 'projekt_ai',
-        'user' => 'root',
-        'password' => ''
+        'database' => 'ai_db',
+        'user' => 'user_notes',
+        'password' => '12345'
     ]
 
 ];

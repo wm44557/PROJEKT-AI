@@ -1,0 +1,19 @@
+{
+    "name": "marcinwrzos/projekt-ai",
+    "authors": [
+        {
+            "name": "Marcin Wrzos",
+            "email": "marwrz36@gmail.com"
+        }
+    ],
+    "require": {
+    
+    },
+    "autoload": {
+        "psr-4": {
+            "Application\\": "src/",
+            "Application\\Controller\\": "src/Controller"
+        }
+    }
+
+}
