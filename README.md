@@ -1,4 +1,4 @@
-## Table of contents
+## Spis treści
 * [Generalne informacje](#Generalne-informacje)
 * [Technologie](#technologie)
 * [Instalacja](#Instalacja)
@@ -11,7 +11,7 @@ Projekt tworzony w ramach przedmiotu Aplikacje Internetowe.
 - Marcin Wrzos 
 	
 ## Technologie
-Project tworzony w technologiach
+Project tworzony w technologiach:
 * PHP 7.4
 * SASS
 * JS ES6
