@@ -1,7 +1,6 @@
 <div class="contentAdmin">
 
-    <div class="tbl-header">
-        <table cellpadding="0" cellspacing="0" border="0">
+        <table class="table-style-one">
             <thead>
                 <tr>
                     <th>LOGIN</th>
@@ -10,9 +9,6 @@
                     <th>ACTION</th>
                 </tr>
             </thead>
-        </table>
-    </div>
-    <table cellpadding="0" cellsapcing="0" border="0">
         <tbody>
             <?php foreach ($params['tableUsers'] ?? [] as $user) : ?>
                 <tr>
@@ -27,5 +23,5 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="admin"><button class="button1"><a href="/PROJEKT-AI/?action=logout">Logout</a></button></div>
+    <div class="admin"><a href="/PROJEKT-AI/?action=logout"><button class="button1">logout</button></a></div>
 </div>

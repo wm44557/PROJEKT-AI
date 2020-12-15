@@ -17,8 +17,8 @@ use Application\Exception\OperationException;
 
 require_once("src/utils/debug.php");
 
-
 $conn = require_once("config/config.php");
+
 $request = new Request($_GET, $_POST);
 
 try {

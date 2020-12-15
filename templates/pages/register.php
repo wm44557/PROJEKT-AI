@@ -1,9 +1,11 @@
+<div class="boxForm">
+
 <form class="box" action="/PROJEKT-AI/?action=register" method="post">
-    <h1>Register</h1>
-    <input class="loginInput" type="text" name="login2" placeholder="Username">
-    <input class="passwordInput" type="password" name="haslo2" placeholder="Password">
-    <input class="passwordInput" type="email" name="email2" placeholder="E-mail">
-    <input class=" submit" type="submit" name="Zarejstruj się" value="Register now!">
+    <h1>register</h1>
+    <input class="loginInput" type="text" name="login2" placeholder="username" autocomplete="off">
+    <input class="passwordInput" type="password" name="haslo2" placeholder="password">
+    <input class="passwordInput" type="email" name="email2" placeholder="e-mail">
+    <input class=" submit" type="submit" name="Zarejstruj się" value="register now!">
     <?php
     if (isset($params['infoRegister'])) {
         if ($params['infoRegister'] == 'one') {
@@ -17,3 +19,4 @@
     ?>
 
 </form>
+</div>

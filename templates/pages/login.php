@@ -3,7 +3,7 @@
     <div class="boxForm">
     <form class="box" action="/PROJEKT-AI/?action=login" method="post">
          <h1>sign in</h1>
-         <input class="loginInput" type="text" name="login" placeholder="username">
+         <input class="loginInput" type="text" name="login" placeholder="username" autocomplete="off">
          <input class="passwordInput" type="password" name="haslo" placeholder="password">
          <input class="submit" type="submit" name="Zaloguj się" value="start">
          <?php
@@ -16,7 +16,7 @@
             }
 
             ?>
-         <button class="button2"><a href="/PROJEKT-AI/?action=register">register</a></button>
-     </form>
+             <div class="button2"><a href="/PROJEKT-AI/?action=register">register</a></button>
+        </form>
      </div>
  <?php endif; ?>

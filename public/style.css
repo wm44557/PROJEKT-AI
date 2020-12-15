@@ -12,7 +12,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-
 }
 
 .boxForm {
@@ -24,7 +23,8 @@ body {
 
 }
 
-.box {
+.box,
+.boxEdit {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,20 +33,29 @@ body {
     justify-content: space-around;
 }
 
+.boxEdit {
+    height: auto;
+}
+
 .loginInput,
-.passwordInput {
+.passwordInput,
+.editRecord {
     color: #7d7d7d;
     font-size: 16px;
     border: none;
     line-height: 22px;
-    width: 33%;
+    width: 27%;
     background: none;
     text-align: center;
     border-bottom: 1px solid #000;
     padding-bottom: 10px;
+    transition: .4s;
 
+}
 
-
+.editRecord {
+    margin-top: 10px;
+    width: 100%;
 }
 
 .submit {
@@ -57,12 +66,13 @@ body {
 .button2 {
     box-sizing: border-box;
     display: block;
+    font-family: 'Montserrat', sans-serif;
     width: 40%;
     text-align: center;
     font-size: 12px;
     text-decoration: none;
     padding: 7px 12px;
-    font-weight: 500;
+    font-weight: 600;
     background: none;
     border: none;
     box-shadow: 0px 2px 4px -1px rgba(74, 79, 74, 0.22);
@@ -78,11 +88,90 @@ body {
 }
 
 .button2 a {
+    padding: 0 10px;
     text-decoration: none;
     color: black;
 }
 
 .submit:hover,
-.button2:hover {
+.button2:hover,
+.button1:hover {
     border-bottom: 1px solid #000;
+}
+
+.loginInput:focus,
+.passwordInput:focus {
+    outline: none;
+
+    width: 35%;
+}
+
+.contentAdmin {
+    padding: 10px;
+}
+
+table.table-style-one {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #3A3A3A;
+    border-collapse: collapse;
+}
+
+table.table-style-one th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #3A3A3A;
+    background-color: #B3B3B3;
+}
+
+table.table-style-one td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #3A3A3A;
+    background-color: #ffffff;
+}
+
+.buttonMini {
+    color: black;
+    border: 1px solid black;
+}
+
+.buttonMini a,
+.button1 a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.button1 {
+    cursor: pointer;
+    margin-top: 10px;
+    width: 200px;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 2px 4px -1px rgba(74, 79, 74, 0.22);
+    color: black;
+    cursor: pointer;
+    border-bottom: 1px solid white;
+    transition: .5s;
+}
+
+.editUL {
+    list-style: none;
+}
+
+.editUL li {
+    margin-top: 20px;
+}
+
+li label {
+    font-weight: 600;
 }

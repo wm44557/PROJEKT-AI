@@ -28,6 +28,7 @@ class Controller
         if (empty(self::$configuration['db'])) {
             throw new ConfigurationException('Configuration error');
         }
+        
         $this->database = new Database(self::$configuration['db']);
         $this->request = $request;
         $this->view = new View();
@@ -51,6 +52,7 @@ class Controller
                 $_SESSION['email'] = $result['email'];
                 $this->params = ['login' => $_SESSION['user'], 'email' => $_SESSION['email']];
                 $this->page = 'pageUser';
+                dump($_POST);
 
             }
         } else {
@@ -81,7 +83,7 @@ class Controller
     public function logout(): void
     {
         session_unset();
-        header("Location: /Projekt-AI/");
+        header("Location: /PROJEKT-AI/");
     }
 
     public function register(): void
@@ -120,7 +122,7 @@ class Controller
 
     public function editRecord(): void
     {
-
+        $editLogin = $this->request->requestPost('userPassEdit');
         $editPass = $this->request->requestPost('userPassEdit');
         $editEmail = $this->request->requestPost('userEmailEdit');
         $requestId = $this->request->requestGet('id');
@@ -131,7 +133,7 @@ class Controller
             (!empty($editPass)) ||
             (!empty($editEmail))
         ) {
-            $this->database->editUser($_SESSION['user'], $editPass, $editEmail, $requestId);
+            $this->database->editUser($editPass, $editEmail, $requestId);
             $_SESSION['pass'] = $editPass;
             $this->params['recordOne'] = $this->database->getRecord($this->request->requestGet('id'));
         }

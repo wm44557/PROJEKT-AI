@@ -22,13 +22,13 @@ class Database
             $this->validateConfg($config);
             $this->createConnection($config);
         } catch (PDOException $e) {
+            dump($e);
             throw new ConnectionException('Connection Error');
         }
     }
 
     public function register($login, $password, $email): void
     {
-        $hasz = md5($login . hash('sha256', $password));
         $query = $this->connection->prepare("
             INSERT INTO osoba(userName, pass, email)
             VALUES(:login,:password,:email)
@@ -53,12 +53,9 @@ class Database
         return $query->fetch();;
     }
 
-    public function editUser($login, $password, $email, $id): void
+    public function editUser($password, $email, $id): void
     {
-        $haszNew = md5($login . hash('sha256', $password));
-        $_SESSION['hasz'] = $haszNew;
-        $query = $this->connection->prepare("UPDATE osoba SET userName = :login,pass = :password,email=:email WHERE id= :id");
-        $query->bindParam(':login', $login);
+        $query = $this->connection->prepare("UPDATE osoba SET pass = :password,email=:email WHERE id= :id");
         $query->bindParam(':password', $password);
         $query->bindParam(':email', $email);
         $query->bindParam(':id', $id);
@@ -87,7 +84,8 @@ class Database
 
     private function createConnection(array $config): void
     {
-        $dsn = "mysql:dbname={$config['database']};host=${config['host']}";
+        $dsn = "mysql:host={$config['host']};dbname={$config['database']}";
+        // $dsn = 'mysql:host=mysql.ct8.pl;dbname=m19244_ai';
         $this->connection = new PDO(
             $dsn,
             $config['user'],

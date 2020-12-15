@@ -7,9 +7,9 @@
     echo "<p>Email " . $params['email'] . "!</p>";
     ?>
 
-    <button class="button1"><a href="/PROJEKT-AI/?action=users">Lista użytkowników</a></button>
+    <a href="/PROJEKT-AI/?action=users"><button class="button1">users list</button></a>
 
-    <button class="button1"> <a href="/PROJEKT-AI/?action=editRecord&id=<?php echo (int) $_SESSION['id'] ?>">Edytuj dane</a></button>
+     <a href="/PROJEKT-AI/?action=editRecord&id=<?php echo (int) $_SESSION['id'] ?>"><button class="button1"> edit</button></a>
 
-    <button class="button1"><a href="/PROJEKT-AI/?action=logout">Logout</a></button>
+    <a href="/PROJEKT-AI/?action=logout"><button class="button1">logout</button></a>
 </div>

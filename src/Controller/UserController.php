@@ -37,10 +37,11 @@ class UserController extends Controller
                     $this->login();
                     break;
             }
-
+        
             $this->logged();
 
             $this->view->render($this->page, $this->params);
+
         } catch (\Throwable $e) {
             throw new OperationException($e, 400);
         }
@@ -50,3 +51,4 @@ class UserController extends Controller
         return $this->request->requestGet('action', self::DEFAULT_ACTION);
     }
 }
+
