@@ -10,7 +10,7 @@
             if (isset($_GET['action'])) {
                 if (($_GET['action']) == 'login') {
                     if ($params['login'] == 'fail') {
-                        echo '<span style = color:red>Niepoprawny login lub haslo!</span>';
+                        echo '<span style = color:red>wrong login or password!</span>';
                     }
                 }
             }

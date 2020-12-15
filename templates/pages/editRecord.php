@@ -30,8 +30,8 @@
            <a href="/PROJEKT-AI/"> <button class="button1">
                     back</button></a>
         <?php else : ?>
-            <div>Brak danych do wyświetlenia</div>
-            <a href="/PROJEKT-AI/"><button>Powrót</button></a>
+            <div>NULL</div>
+            <a href="/PROJEKT-AI/"><button>back</button></a>
         <?php endif; ?>
     </div>
 </div>

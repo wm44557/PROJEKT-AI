@@ -27,16 +27,15 @@ class Database
         }
     }
 
-    public function register($login, $password, $email): void
+    public function register($loginInput, $passwordInput, $emailInput): void
     {
-        $query = $this->connection->prepare("
-            INSERT INTO osoba(userName, pass, email)
-            VALUES(:login,:password,:email)
-            ");
-        $query->bindParam(':login', $login);
-        $query->bindParam(':password', $password);
-        $query->bindParam(':email', $email);
+        $query = $this->connection->prepare("INSERT INTO users(email, login, password,role) VALUES(:email,:login,:password,'user')");
+        $query->bindParam(':login', $loginInput);
+        $query->bindParam(':password', $passwordInput);
+        $query->bindParam(':email', $emailInput);
         $query->execute();
+        
+
     }
     public function listUsers(): array
     {
@@ -47,7 +46,7 @@ class Database
 
     public function getRecord($id): array
     {
-        $query = $this->connection->prepare("SELECT * FROM osoba WHERE id=:id");
+        $query = $this->connection->prepare("SELECT * FROM users WHERE id=:id");
         $query->bindParam(':id', $id);
         $query->execute();
         return $query->fetch();;
@@ -55,7 +54,7 @@ class Database
 
     public function editUser($password, $email, $id): void
     {
-        $query = $this->connection->prepare("UPDATE osoba SET pass = :password,email=:email WHERE id= :id");
+        $query = $this->connection->prepare("UPDATE users SET password = :password,email=:email WHERE id= :id");
         $query->bindParam(':password', $password);
         $query->bindParam(':email', $email);
         $query->bindParam(':id', $id);
@@ -67,9 +66,9 @@ class Database
         $checkPassword = $password === null ? false : true;
 
         if ($checkPassword == false) {
-            $query = $this->connection->prepare("SELECT * FROM osoba WHERE userName=:login");
+            $query = $this->connection->prepare("SELECT * FROM users WHERE login=:login");
         } else {
-            $query = $this->connection->prepare("SELECT * FROM osoba WHERE userName=:login AND pass=:password");
+            $query = $this->connection->prepare("SELECT * FROM users WHERE login=:login AND password=:password");
             $query->bindParam(':password', $password);
         }
         $query->bindParam(':login', $login);

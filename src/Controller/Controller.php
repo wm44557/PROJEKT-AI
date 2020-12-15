@@ -41,14 +41,14 @@ class Controller
             $result = $this->database->loginPassword($this->request->requestPost('login'), $this->request->requestPost('haslo'));
         }
         if (!empty($result)) {
-            if ($result['userName'] == 'admin') {
+            if ($result['login'] == 'admin') {
                 $_SESSION['zalogowany'] = 2;
                 $this->page = 'panelAdmin';
             } else {
                 $_SESSION['zalogowany'] = 1;
                 $_SESSION['id'] = $result['id'];
-                $_SESSION['user'] = $result['userName'];
-                $_SESSION['pass'] = $result['pass'];
+                $_SESSION['user'] = $result['login'];
+                $_SESSION['pass'] = $result['password'];
                 $_SESSION['email'] = $result['email'];
                 $this->params = ['login' => $_SESSION['user'], 'email' => $_SESSION['email']];
                 $this->page = 'pageUser';
@@ -67,8 +67,8 @@ class Controller
         if (isset($_SESSION['zalogowany'])) {
             if ($_SESSION['zalogowany'] == 1) {
                 $result = $this->database->loginPassword($_SESSION['user'], $_SESSION['pass']);
-                $login = $result['userName'];
-                $pass = $result['pass'];
+                $login = $result['login'];
+                $pass = $result['password'];
                 $email = $result['email'];
                 $this->params = ['login' => $login, 'email' => $email];
                 $this->page = 'pageUser';
