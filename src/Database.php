@@ -39,7 +39,7 @@ class Database
     }
     public function listUsers(): array
     {
-        $query = "SELECT * from osoba";
+        $query = "SELECT * from users";
         $result = $this->connection->query($query);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }

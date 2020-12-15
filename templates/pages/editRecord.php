@@ -12,7 +12,7 @@
 
                     <li>
                         <label>password</label>
-                        <input type="text" name="userPassEdit" class="editRecord" value="<?php echo $recordOne['pass'] ?>" />
+                        <input type="text" name="userPassEdit" class="editRecord" value="<?php echo $recordOne['password'] ?>" />
                     </li>
                     <li>
                         <label>email</label>

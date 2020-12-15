@@ -12,8 +12,8 @@
         <tbody>
             <?php foreach ($params['tableUsers'] ?? [] as $user) : ?>
                 <tr>
-                    <td><?php echo  $user['userName'] ?></td>
-                    <td><?php echo $user['pass'] ?></td>
+                    <td><?php echo  $user['login'] ?></td>
+                    <td><?php echo $user['password'] ?></td>
                     <td><?php echo $user['email'] ?></td>
                     <td>
                         <button class="buttonMini"> <a href="/PROJEKT-AI/?action=showRecord&id=<?php echo (int) $user['id'] ?>">Options</a></button>

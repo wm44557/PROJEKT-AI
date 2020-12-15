@@ -3,10 +3,10 @@
     <?php if ($recordOne) : ?>
 
         <ul>
-            <li>ID: <?php echo $recordOne['id'] ?></li>
-            <li>Tytuł: <?php echo $recordOne['userName'] ?></li>
-            <li>Opis: <?php echo $recordOne['pass'] ?></li>
-            <li>Zapisano: <?php echo $recordOne['email'] ?></li>
+            <li>id: <?php echo $recordOne['id'] ?></li>
+            <li>login: <?php echo $recordOne['login'] ?></li>
+            <li>password: <?php echo $recordOne['password'] ?></li>
+            <li>email: <?php echo $recordOne['email'] ?></li>
         </ul>
 
          <a href="/PROJEKT-AI/?action=editRecord&id=<?php echo $recordOne['id'] ?>"> <button class="button1">edit</button></a>
