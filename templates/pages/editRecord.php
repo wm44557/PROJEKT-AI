@@ -7,7 +7,7 @@
                 <input name="id" type="hidden" value="<?php echo $recordOne['id'] ?>" />
                 <ul class="editUL">
                     <li>
-                        <label>login <?php echo $recordOne['userName'] ?><span class="required">*</span></label>
+                        <label>login <?php echo $recordOne['login'] ?><span class="required">*</span></label>
                     </li>
 
                     <li>
