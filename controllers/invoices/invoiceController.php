@@ -22,6 +22,7 @@ class invoiceController
 
     public function listInvoice($router)
     {
+
         $invoice = new Invoice();
 
         $results=$invoice->listInvoice();

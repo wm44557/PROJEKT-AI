@@ -9,6 +9,8 @@
     <?php if(isset($_SESSION['user_id'])) :?>
     <nav>Navbar <form action="<?php echo STARTING_URL?>/logout" method="post"><input type="submit" value="Wyloguj"></form> </nav>
     <?php endif ?>
+
     <?php echo $content ?>
+
 </body>
 </html>

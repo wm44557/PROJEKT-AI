@@ -11,11 +11,6 @@ use app\utility\Permissions;
 
 class userController
 {
-    public function user_edit($router)
-    {
-        Permissions::check("user");
-        $router->render("pages/user/edit");
-    }
 
     public function addInvoice($router)
     {

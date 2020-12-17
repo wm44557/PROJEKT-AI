@@ -11,14 +11,11 @@ use app\utility\Permissions;
 
 class loginController
 {
-
     public function login($router)
     {
-
         $errors = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            dump($_POST);
             $login = $_POST['login'];
             $password = $_POST['password'];
 
@@ -33,6 +30,7 @@ class loginController
             } else {
                 $errors['auth'] = "Niepoprawny login lub hasło.";
             }
+
         }
 
 

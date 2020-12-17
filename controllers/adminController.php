@@ -11,10 +11,23 @@ use app\utility\Permissions;
 
 class adminController
 {
-    public function register_user($router)
+    public function registerUser($router)
     {
         Permissions::check("admin");
+        if($_POST) {
+            $dataRegister = $_POST;
+            dump($dataRegister);
+            $user = new User();
+            $user->registerUser($dataRegister);
+        }
         $router->render("pages/admin/register");
-
     }
+
+    public function addInvoice($router)
+    {
+        Permissions::check("admin");
+        $router->render("pages/components/invoiceForm");
+    }
+
+
 }
