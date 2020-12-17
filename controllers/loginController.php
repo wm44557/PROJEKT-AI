@@ -38,7 +38,6 @@ class Controller{
 
         $router->render('pages/login', [
             'errors' => $errors,
-            'user' => $_GET['okon'],
         ]);
     }
 
