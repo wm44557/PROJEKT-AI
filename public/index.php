@@ -26,8 +26,9 @@ $router->post("/admin/register", [adminController::class, 'register_user']);
 
 $router->get('/user/edit', [userController::class, 'user_edit']);
 $router->post('/user/edit', [userController::class, 'user_edit']);
-$router->get('/user/add_invoice', [userController::class, 'addInvoice']);
-$router->post('/user/add_invoice', [invoiceController::class, 'addInvoice']);
+$router->get('/user/add-invoice', [userController::class, 'addInvoice']);
+$router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
+$router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
 
 
 

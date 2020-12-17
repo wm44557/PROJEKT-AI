@@ -54,6 +54,17 @@ class Invoice
 
     public function listInvoice()
     {
+        $this->conn = new Database();
+
+        //Pobranie z bazy wszystkich faktur
+        $this->conn->query(
+            "SELECT i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.price_netto
+                FROM invoices AS i, contractors AS c
+                WHERE i.contractor_id=c.id
+                GROUP BY i.invoice_number
+                ORDER BY i.date_of_invoice DESC"
+        );
+        return $this->conn->resultSet();
 
     }
 }
