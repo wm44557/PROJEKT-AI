@@ -19,6 +19,7 @@ class adminController
             dump($dataRegister);
             $user = new User();
             $user->registerUser($dataRegister);
+            Redirect::to("/");
         }
         $router->render("pages/admin/register");
     }

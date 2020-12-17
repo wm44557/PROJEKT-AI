@@ -3,8 +3,8 @@
 session_start();
 
 require_once realpath("../vendor/autoload.php");
-require_once ("../config/config.php");
-require_once ("../utility/debug.php");
+require_once("../config/config.php");
+require_once("../utility/debug.php");
 
 use app\utility\Router;
 use app\controllers\loginController;
@@ -13,8 +13,6 @@ use app\controllers\userController;
 use app\controllers\invoices\invoiceController;
 
 $router = new Router();
-
-
 
 $router->get('/', [loginController::class, 'login']);
 $router->post('/', [loginController::class, 'login']);
@@ -34,11 +32,5 @@ $router->post('/user/edit', [userController::class, 'user_edit']);
 $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
-
-
-
-
-
-
 
 $router->resolve();

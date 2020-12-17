@@ -13,11 +13,9 @@ class invoiceController
     public function addInvoice($router)
     {
         $dataPost=$_POST;
-
         $invoice = new Invoice();
-        $result = $invoice->addInvoice($dataPost);
+        $invoice->addInvoice($dataPost);
         Redirect::to("/");
-
     }
 
     public function listInvoice($router)

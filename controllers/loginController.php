@@ -30,9 +30,7 @@ class loginController
             } else {
                 $errors['auth'] = "Niepoprawny login lub hasło.";
             }
-
         }
-
 
         if (isset($_SESSION['user_role'])) {
             Redirect::to("/" . $_SESSION['user_role']);
@@ -60,7 +58,6 @@ class loginController
     {
         Permissions::check("user");
         $router->render('pages/user/panel', [
-
         ]);
     }
 
