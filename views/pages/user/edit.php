@@ -1,4 +1,4 @@
 <h1>Edit user</h1>
 <form method="post">
-    <input type="text" name="imie" id="">
+    Imie: <input type="text" name="firstName" id=""><br>
 </form>

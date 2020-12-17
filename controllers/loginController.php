@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\controllers;
 
 use app\Router;
@@ -7,11 +9,13 @@ use app\models\User;
 use app\utility\Redirect;
 use app\utility\Permissions;
 
-class Controller{
+class loginController
+{
 
-    public function login($router){
+    public function login($router)
+    {
 
-        $errors=[];
+        $errors = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             dump($_POST);
@@ -32,7 +36,7 @@ class Controller{
         }
 
 
-        if (isset($_SESSION['user_role'])){
+        if (isset($_SESSION['user_role'])) {
             Redirect::to("/" . $_SESSION['user_role']);
         }
 
@@ -41,43 +45,28 @@ class Controller{
         ]);
     }
 
-    public function logout($router){
+    public function logout($router)
+    {
         session_destroy();
         Redirect::to("/");
     }
 
-
-
+    public function admin($router)
+    {
+        Permissions::check("admin");
+        $router->render('pages/admin/panel', [
+        ]);
+    }
 
     public function user($router)
     {
         Permissions::check("user");
-        $router->render('pages/panel', [
+        $router->render('pages/user/panel', [
 
         ]);
     }
 
-    public function  user_edit($router){
-        Permissions::check("user");
-        $router->render("pages/user/edit");
-    }
 
-
-
-
-
-    public function admin($router){
-        Permissions::check("admin");
-        $router->render('pages/admin', [
-        ]);
-    }
-
-    public function  register_user($router){
-        Permissions::check("admin");
-        $router->render('pages/register', [
-            'kozak' => "XD",
-        ]);
-    }
 
 
 }

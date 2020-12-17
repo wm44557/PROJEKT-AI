@@ -7,21 +7,30 @@ require_once ("../config/config.php");
 require_once ("../utility/debug.php");
 
 use app\utility\Router;
-use app\controllers\Controller;
+use app\controllers\loginController;
+use app\controllers\adminController;
+use app\controllers\userController;
+use app\controllers\invoices\invoiceController;
 
 $router = new Router();
 
-$router->get('/', [Controller::class, 'login']);
-$router->post('/', [Controller::class, 'login']);
 
-$router->get('/admin', [Controller::class, 'admin']);
-$router->get("/admin/register", [Controller::class, 'register_user']);
 
-$router->get('/user', [Controller::class, 'user']);
-$router->get('/user/edit', [Controller::class, 'user_edit']);
-$router->post('/user/edit', [Controller::class, 'user_edit']);
+$router->get('/', [loginController::class, 'login']);
+$router->post('/', [loginController::class, 'login']);
+$router->get('/admin', [loginController::class, 'admin']);
+$router->get('/user', [loginController::class, 'user']);
+$router->post('/logout', [loginController::class, 'logout']);
 
-$router->post('/logout', [Controller::class, 'logout']);
+$router->post("/admin/register", [adminController::class, 'register_user']);
+
+$router->get('/user/edit', [userController::class, 'user_edit']);
+$router->post('/user/edit', [userController::class, 'user_edit']);
+$router->get('/user/add_invoice', [userController::class, 'addInvoice']);
+$router->post('/user/add_invoice', [invoiceController::class, 'addInvoice']);
+
+
+
 
 
 $router->resolve();

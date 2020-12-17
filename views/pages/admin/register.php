@@ -1,2 +1,1 @@
-<h1>Register</h1>
-<p><?php echo $kozak ?></p>
+<h1>Register User</h1>
