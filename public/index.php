@@ -26,11 +26,13 @@ $router->post("/admin/register", [adminController::class, 'registerUser']);
 $router->get('/admin/add-invoice', [adminController::class, 'addInvoice']);
 $router->post('/admin/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/admin/list-invoice', [invoiceController::class, 'listInvoice']);
+$router->post('/admin/list-invoice', [invoiceController::class, 'showInvoice']);
 
 $router->get('/user/edit', [userController::class, 'user_edit']);
 $router->post('/user/edit', [userController::class, 'user_edit']);
 $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
+$router->post('/user/list-invoice', [invoiceController::class, 'showInvoice']);
 
 $router->resolve();

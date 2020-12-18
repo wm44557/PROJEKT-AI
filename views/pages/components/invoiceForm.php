@@ -14,6 +14,7 @@
     <input type="text" name="sku" placeholder="Sku.." size="10">&nbsp;
     <input type="text" name="name" placeholder="Name licence..">&nbsp;
     <input type="text" name="description" placeholder="Description..">&nbsp;
+    <input type="text" name="serialNumber" placeholder="serialNumber..">&nbsp;
     <input type="date" name="buyDate" placeholder="Date of purchase..">&nbsp;
     <input type="date" name="warranty" placeholder="Warranty to..">&nbsp;
     <input type="date" name="valid" placeholder="Valid to..">&nbsp;<br>

@@ -7,6 +7,7 @@
         <th>NIP</th>
         <th>Data wystawienia faktury</th>
         <th>Cena NETTO</th>
+        <th>Szczegóły</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,12 @@
         echo '<td>' . $row->vat_id . '</td>';
         echo '<td>' . $row->date_of_invoice . '</td>';
         echo '<td>' . $row->price_netto . '</td>';
+        echo "<td> 
+          <form method='POST'>
+             <input type='hidden' value='$row->ID' name='invoiceId'/>
+             <input class='submit' type='submit' value='Details'>
+          </form>
+        </td>";
         echo '</tr>';
     }
     ?>
