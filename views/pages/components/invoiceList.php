@@ -6,7 +6,7 @@
         <th>Kontrahent</th>
         <th>NIP</th>
         <th>Data wystawienia faktury</th>
-        <th>Cena NETTO</th>
+        <th>Cena Brutto</th>
         <th>Szczegóły</th>
     </tr>
     </thead>
@@ -19,7 +19,7 @@
         echo '<td>' . $row->name . '</td>';
         echo '<td>' . $row->vat_id . '</td>';
         echo '<td>' . $row->date_of_invoice . '</td>';
-        echo '<td>' . $row->price_netto . '</td>';
+        echo '<td>' . $row->sum_brutto . '</td>';
         echo "<td> 
           <form method='POST'>
              <input type='hidden' value='$row->ID' name='invoiceId'/>

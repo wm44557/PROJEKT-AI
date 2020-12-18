@@ -26,11 +26,12 @@ class Invoice
 
         //Dodanie faktury do bazy
         $this->conn->query(
-            "INSERT INTO `invoices`(`invoice_number`, `price_netto`, `vat`, `date_of_invoice`, `type`,`contractor_id`) 
-                    VALUES (:invoice_number,:price_netto,:vat,:data_of_invoice,:type,:contractor_id)");
+            "INSERT INTO `invoices`(`invoice_number`, `sum_netto`, `sum_vat`,`sum_brutto`, `date_of_invoice`, `type`,`contractor_id`) 
+                    VALUES (:invoice_number,:sum_netto,:sum_vat,:sum_brutto,:data_of_invoice,:type,:contractor_id)");
         $this->conn->bindValue('invoice_number', $dataPost['invoiceNumber']);
-        $this->conn->bindValue("price_netto", $dataPost['priceNetto']);
-        $this->conn->bindValue("vat", $dataPost['vat']);
+        $this->conn->bindValue("sum_netto", $dataPost['sumNetto']);
+        $this->conn->bindValue("sum_vat", $dataPost['sumVAT']);
+        $this->conn->bindValue("sum_brutto", $dataPost['sumBrutto']);
         $this->conn->bindValue("data_of_invoice", $dataPost['dateInvoice']);
         $this->conn->bindValue("type", $dataPost['type']);
         $this->conn->bindValue("contractor_id", $contractorId->id);
@@ -45,8 +46,8 @@ class Invoice
         //Dodanie licencji do bazy oraz przypisanie konkretnej licencji do faktury
         $this->conn->query(
             "INSERT INTO 
-            `licences`(`sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`, `who_uses`, `invoice_id`) 
-            VALUES (:sku,:name,:description,:serialNumber,:buyDate,:warranty,:valid,:priceNetto,:vat,:owner,:invoiceId)");
+            `licences`(`sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id`) 
+            VALUES (:sku,:name,:description,:serialNumber,:buyDate,:warranty,:valid,:priceNetto,:vat,:priceBrutto,:owner,:invoiceId)");
         $this->conn->bindValue('sku', $dataPost['sku']);
         $this->conn->bindValue("name", $dataPost['name']);
         $this->conn->bindValue("serialNumber", $dataPost['serialNumber']);
@@ -56,6 +57,7 @@ class Invoice
         $this->conn->bindValue("valid", $dataPost['valid']);
         $this->conn->bindValue("priceNetto", $dataPost['priceNetto']);
         $this->conn->bindValue("vat", $dataPost['vat']);
+        $this->conn->bindValue("priceBrutto", $dataPost['priceBrutto']);
         $this->conn->bindValue("owner", $dataPost['owner']);
         $this->conn->bindValue("invoiceId", $invoiceId->id);
         $this->conn->execute();
@@ -85,7 +87,7 @@ class Invoice
 
         //Pobranie z bazy wszystkich faktur
         $this->conn->query(
-            "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.price_netto
+            "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.sum_brutto
                 FROM invoices AS i, contractors AS c
                 WHERE i.contractor_id=c.id
                 GROUP BY i.invoice_number
@@ -98,7 +100,7 @@ class Invoice
     {
         $this->conn = new Database();
         $this->conn->query("
-            SELECT i.id, i.invoice_number, c.name,c.vat_id, i.price_netto, i.vat, i.date_of_invoice, i.type, i.dirpath, i.type
+            SELECT i.id, i.invoice_number, c.name,c.vat_id, i.sum_netto, i.sum_vat,i.sum_brutto, i.date_of_invoice, i.type, i.dirpath, i.type
             FROM invoices as i, contractors as c
             WHERE i.contractor_id=c.id
             AND i.id=:invoiceId;
@@ -107,7 +109,7 @@ class Invoice
         $invoiceData['headerInvoice']= $this->conn->resultSet();
 
         $this->conn->query("
-            SELECT `id`, `sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`, `who_uses`, `invoice_id` 
+            SELECT `id`, `sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id` 
             FROM `licences` 
             WHERE invoice_id=:invoiceId
             ");

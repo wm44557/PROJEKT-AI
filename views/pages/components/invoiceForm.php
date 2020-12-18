@@ -18,10 +18,22 @@
     <input type="date" name="buyDate" placeholder="Date of purchase..">&nbsp;
     <input type="date" name="warranty" placeholder="Warranty to..">&nbsp;
     <input type="date" name="valid" placeholder="Valid to..">&nbsp;<br>
-    <input type="number" name="priceNetto" placeholder="Price (netto)..">&nbsp;
-    <input type="number" name="vat" placeholder="Vat..">&nbsp;
     <input type="text" name="owner" placeholder="Owner..">
+    <input type="number" name="priceNetto" placeholder="Price (netto)..">&nbsp;
+    <input type="number" name="vat" placeholder="Amount VAT..">&nbsp;
+    <input type="number" name="priceBrutto" placeholder="Price (brutto)..">&nbsp;
+
     <br><br>
 
+
+    <h2>Summary</h2>
+    <input type="number" name="sumNetto" placeholder="Netto SUM..">&nbsp;
+    <input type="number" name="sumVAT" placeholder="Vat SUM..">&nbsp;
+    <input type="number" name="sumBrutto" placeholder="Brutto SUM..">
+    <br>
+    <br>
+    <br>
     <input class="submit" type="submit" value="Send"><br>
 </form>
+<br>
+<a href="<?php echo STARTING_URL?>/admin"><button>Wroc</button></a>

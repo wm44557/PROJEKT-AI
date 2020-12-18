@@ -61,6 +61,13 @@ class loginController
         ]);
     }
 
+    public function auditor($router)
+    {
+        //Permissions::check("user");
+        $router->render('pages/auditor/panel', [
+        ]);
+    }
+
 
 
 

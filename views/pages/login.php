@@ -10,3 +10,15 @@
         <input class="submit" type="submit" name="Zaloguj się" value="start">
     </form>
 </div>
+<br>
+<h4>Admin:</h4>
+<p>login: admin</P>
+<p>haslo: admin123</P>
+<br>
+<h4>User:</h4>
+<p>login: kowal</P>
+<p>haslo: kowal123</P>
+<br>
+<h4>Auditor:</h4>
+<p>login: osek</P>
+<p>haslo: osek123</P>

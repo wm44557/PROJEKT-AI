@@ -20,12 +20,13 @@ foreach ($results['headerInvoice'] as $rowHeader) {
         <th>Nazwa licencji/uslugi</th>
         <th>Opis</th>
         <th>Numer seryjny</th>
+        <th>Posiadacz</th>
         <th>Data zakupu</th>
         <th>Gwarancja</th>
         <th>Ważność</th>
         <th>Cena Netto</th>
         <th>Vat (%)</th>
-        <th>Posiadacz</th>
+        <th>Cena Brutto</th>
     </tr>
     </thead>
     <tbody>
@@ -37,12 +38,14 @@ foreach ($results['headerInvoice'] as $rowHeader) {
         echo '<td>' . $rowLicence->name . '</td>';
         echo '<td>' . $rowLicence->description . '</td>';
         echo '<td>' . $rowLicence->serial_number . '</td>';
+        echo '<td>' . $rowLicence->who_uses . '</td>';
         echo '<td>' . $rowLicence->buy_date . '</td>';
         echo '<td>' . $rowLicence->warranty_to . '</td>';
         echo '<td>' . $rowLicence->valid_to . '</td>';
         echo '<td>' . $rowLicence->price_netto . '</td>';
         echo '<td>' . $rowLicence->vat . '</td>';
-        echo '<td>' . $rowLicence->who_uses . '</td>';
+        echo '<td>' . $rowLicence->price_brutto . '</td>';
+
         echo '</tr>';
     }
 
@@ -52,7 +55,13 @@ foreach ($results['headerInvoice'] as $rowHeader) {
 </table>
 <br><br>
 
-<b>Suma wartość faktury Netto:</b> 1231
+<?php
+foreach ($results['headerInvoice'] as $rowHeader) {
+    echo '<b>Suma netto:</b> ' . $rowHeader->sum_netto;
+    echo '<br><br><b>Suma podatku VAT:</b> ' . $rowHeader->sum_vat;
+    echo '<br><br><b>Suma brutto:</b> ' . $rowHeader->sum_brutto;
+}
+?>
 <br>
 <a href="<?php echo STARTING_URL?>/admin/list-invoice"><button>Wroc</button></a>
 <?php  echo '<br><br><br><br><br>';

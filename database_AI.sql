@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Gru 2020, 23:04
+-- Czas generowania: 18 Gru 2020, 23:17
 -- Wersja serwera: 10.4.14-MariaDB
 -- Wersja PHP: 7.4.11
 
@@ -50,10 +50,7 @@ CREATE TABLE `contractors` (
 --
 
 INSERT INTO `contractors` (`id`, `name`, `vat_id`) VALUES
-(14, 'LNS', '412512512'),
-(17, 'ATV', '12512512'),
-(18, 'dsada', '12312'),
-(19, 'test', '123123');
+(1, 'Osek Corporation', 'NIP123');
 
 -- --------------------------------------------------------
 
@@ -98,8 +95,9 @@ CREATE TABLE `equipement` (
 CREATE TABLE `invoices` (
   `id` int(11) NOT NULL,
   `invoice_number` varchar(32) DEFAULT NULL,
-  `price_netto` decimal(10,2) NOT NULL,
-  `vat` tinyint(4) NOT NULL DEFAULT 0,
+  `sum_netto` decimal(10,2) NOT NULL,
+  `sum_vat` tinyint(4) NOT NULL DEFAULT 0,
+  `sum_brutto` decimal(10,2) NOT NULL,
   `date_of_invoice` date NOT NULL,
   `dirpath` varchar(32) DEFAULT NULL,
   `type` enum('sale','buy') NOT NULL,
@@ -111,11 +109,8 @@ CREATE TABLE `invoices` (
 -- Zrzut danych tabeli `invoices`
 --
 
-INSERT INTO `invoices` (`id`, `invoice_number`, `price_netto`, `vat`, `date_of_invoice`, `dirpath`, `type`, `contractor_id`, `category_id`) VALUES
-(32, 'INV069123', '193.00', 23, '2020-12-14', NULL, 'sale', 14, NULL),
-(35, '12312312', '1000.00', 23, '2020-12-26', NULL, 'sale', 17, NULL),
-(36, 'dsa', '11111.00', 19, '2020-12-17', NULL, 'buy', 18, NULL),
-(37, 'test2', '500.00', 11, '2020-12-17', NULL, 'buy', 19, NULL);
+INSERT INTO `invoices` (`id`, `invoice_number`, `sum_netto`, `sum_vat`, `sum_brutto`, `date_of_invoice`, `dirpath`, `type`, `contractor_id`, `category_id`) VALUES
+(1, 'INV1142', '400.00', 24, '501.00', '2020-12-18', NULL, 'sale', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -145,9 +140,17 @@ CREATE TABLE `licences` (
   `valid_to` date DEFAULT NULL,
   `price_netto` decimal(10,2) NOT NULL,
   `vat` tinyint(4) NOT NULL DEFAULT 0,
+  `price_brutto` decimal(10,2) NOT NULL,
   `who_uses` varchar(128) DEFAULT NULL,
   `invoice_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `licences`
+--
+
+INSERT INTO `licences` (`id`, `sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`, `price_brutto`, `who_uses`, `invoice_id`) VALUES
+(1, '1', 'Windows 10', 'Licencja do windowsa 10', 'serial123Key', '2020-12-18', '2020-12-18', '2020-12-18', '100.00', 23, '200.00', 'Cris', 1);
 
 -- --------------------------------------------------------
 
@@ -169,8 +172,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `login`, `password`, `role`) VALUES
 (1, NULL, 'admin', 'admin123', 'admin'),
-(2, 'kowal@kowal.pl', 'kowal', 'kowal123', 'user');
-
+(2, 'kowal@kowal.pl', 'kowal', 'kowal123', 'user'),
+(3, 'test@test.pl', 'osek', 'osek123', 'auditor');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -247,7 +250,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT dla tabeli `contractors`
 --
 ALTER TABLE `contractors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents`
@@ -265,13 +268,13 @@ ALTER TABLE `equipement`
 -- AUTO_INCREMENT dla tabeli `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `licences`
 --
 ALTER TABLE `licences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
