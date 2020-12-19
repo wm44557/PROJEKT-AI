@@ -6,7 +6,6 @@ namespace app\models;
 use app\utility\Database;
 
 
-
 class Invoice
 {
     public function addInvoice($dataPost)
@@ -80,7 +79,6 @@ class Invoice
 //    [owner] => Andrzej
 
 
-
     public function listInvoice()
     {
         $this->conn = new Database();
@@ -88,24 +86,21 @@ class Invoice
         //$LIMIT słuzy do ustawiania ilosci rekordów na jednej stronie
         $limit = 5;
         if (isset($_GET["page"])) {
-            $currentPage  = $_GET["page"];
-        }
-        else {
-            $currentPage=1;
+            $currentPage = $_GET["page"];
+        } else {
+            $currentPage = 1;
         };
-        $searchText=$_GET['search'] ?? '';
 
+        $searchText = $_GET['search'] ?? '';
 
-        if($searchText=='') {
+        if ($searchText == '') {
             $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices ");
-        }
-        else
-        {
+        } else {
             $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices WHERE invoice_number LIKE '%$searchText%'");
         }
 
         $totalRecords = $this->conn->single();
-        $startFrom = ($currentPage-1) * $limit;
+        $startFrom = ($currentPage - 1) * $limit;
         $totalPages = ceil($totalRecords->countRecords / $limit);
 
         //Pobranie z bazy wszystkich faktur ORDER BY i.date_of_invoice DESC
@@ -117,8 +112,8 @@ class Invoice
                 GROUP BY i.invoice_number
                 LIMIT $startFrom, $limit"
         );
-        $records['elements']=$this->conn->resultSet();
-        $records['paginationInfo']=$totalPages;
+        $records['elements'] = $this->conn->resultSet();
+        $records['paginationInfo'] = $totalPages;
         return $records;
     }
 
@@ -132,7 +127,7 @@ class Invoice
             AND i.id=:invoiceId;
             ");
         $this->conn->bindValue("invoiceId", $dataPost['invoiceId']);
-        $invoiceData['headerInvoice']= $this->conn->resultSet();
+        $invoiceData['headerInvoice'] = $this->conn->resultSet();
 
         $this->conn->query("
             SELECT `id`, `sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id` 
@@ -140,7 +135,7 @@ class Invoice
             WHERE invoice_id=:invoiceId
             ");
         $this->conn->bindValue("invoiceId", $dataPost['invoiceId']);
-        $invoiceData['licenceData']= $this->conn->resultSet();
+        $invoiceData['licenceData'] = $this->conn->resultSet();
         return $invoiceData;
     }
 }

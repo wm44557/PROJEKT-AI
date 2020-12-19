@@ -1,7 +1,7 @@
 <h1> Lista Faktur</h1>
 <form action="" method="GET">
     <div>
-        <label>Wyszukaj: <input type="text" name="search" placeholder="Nr faktury.."/></label>
+        <label>Wyszukaj: <input type="text" name="search"  placeholder="Nr faktury.."/></label>
     </div>
 </form>
 <br>
@@ -39,10 +39,14 @@
 </table>
 <br>
 
+<h5>Paginacja <br></h5>
 <?php
-echo "Paginacja <br>";
+
+if($_GET) $search=$_GET['search'] ?? "";
+else $search="";
+
 for ($i = 1; $i <= $results['paginationInfo']; $i++) {
-    echo " <a href='?page=" . $i . "'>" . $i . "</a>";
+    echo " <a href='?page=" . $i . "&search=".$search."'>" . $i . "</a>";
 }
 ?>
 
