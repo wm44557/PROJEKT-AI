@@ -1,4 +1,5 @@
 <h1> Lista Faktur</h1>
+
 <table>
     <thead>
     <tr>
@@ -13,7 +14,7 @@
     <tbody>
     <?php
     //dump($results);
-    foreach ($results as $row) {
+    foreach ($results['elements'] as $row) {
         echo '<tr>';
         echo '<td>' . $row->invoice_number . '</td>';
         echo '<td>' . $row->name . '</td>';
@@ -32,4 +33,17 @@
     </tbody>
 </table>
 <br>
-<a href="<?php echo STARTING_URL?>"><button>Wróć</button></a>
+
+<?php
+echo "Paginacja <br>";
+for ($i = 1; $i <= $results['paginationInfo']; $i++) {
+    echo " <a href='?page=" . $i . "'>" . $i . "</a>";
+}
+?>
+
+<br>
+<br>
+<br>
+<a href="<?php echo STARTING_URL ?>">
+    <button>Wróć</button>
+</a>

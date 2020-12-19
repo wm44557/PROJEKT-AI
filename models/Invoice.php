@@ -85,15 +85,32 @@ class Invoice
     {
         $this->conn = new Database();
 
-        //Pobranie z bazy wszystkich faktur
+        //$LIMIT słuzy do ustawiania ilosci rekordów na jednej stronie
+        $limit = 5;
+        if (isset($_GET["page"])) {
+            $currentPage  = $_GET["page"];
+        }
+        else {
+            $currentPage=1;
+        };
+
+        $startFrom = ($currentPage-1) * $limit;
+        $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices");
+        $totalRecords=$this->conn->single();
+
+        $totalPages = ceil($totalRecords->countRecords / $limit);
+
+        //Pobranie z bazy wszystkich faktur ORDER BY i.date_of_invoice DESC
         $this->conn->query(
             "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.sum_brutto
                 FROM invoices AS i, contractors AS c
                 WHERE i.contractor_id=c.id
                 GROUP BY i.invoice_number
-                ORDER BY i.date_of_invoice DESC"
+                LIMIT $startFrom, $limit"
         );
-        return $this->conn->resultSet();
+        $records['elements']=$this->conn->resultSet();
+        $records['paginationInfo']=$totalPages;
+        return $records;
     }
 
     public function showInvoice($dataPost)
