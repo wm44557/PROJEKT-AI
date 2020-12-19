@@ -1,14 +1,22 @@
 
-<div class="boxForm">
-    <form class="box" method="post">
 
-        <h1>Sign in</h1>
-        <?php if (isset($errors['auth'])) echo "<p>" . $errors['auth'] . "</p>" ?>
 
-        <input class="loginInput" type="text" name="login" placeholder="username" autocomplete="off"><br><br>
-        <input class="passwordInput" type="password" name="password" placeholder="password"><br><br>
-        <input class="submit" type="submit" name="Zaloguj się" value="start">
-    </form>
+<div class="login-form__background">
+    <div class="login-form__form">
+        <div>
+            <h1>Zaloguj się</h1>
+            <p><small>Wpisz swój login i hasło, aby się zalogować.</small></p>
+        </div>
+        <form method="post">
+
+            <input class="input" type="text" name="login" placeholder="Login" autocomplete="off">
+            <input class="input" type="password" name="password" placeholder="Hasło">
+            <?php if (isset($errors['auth'])) echo "<p class='error'>" . $errors['auth'] . "</p>" ?>
+            <br><br>
+            <input class="button primary" type="submit" name="Zaloguj się" value="Zaloguj">
+        </form>
+    </div>
+
 </div>
 <br>
 <h4>Admin:</h4>
