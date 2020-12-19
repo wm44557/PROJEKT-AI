@@ -93,11 +93,19 @@ class Invoice
         else {
             $currentPage=1;
         };
+        $searchText=$_GET['search'] ?? '';
 
+
+        if($searchText=='') {
+            $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices ");
+        }
+        else
+        {
+            $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices WHERE invoice_number LIKE '%$searchText%'");
+        }
+
+        $totalRecords = $this->conn->single();
         $startFrom = ($currentPage-1) * $limit;
-        $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices");
-        $totalRecords=$this->conn->single();
-
         $totalPages = ceil($totalRecords->countRecords / $limit);
 
         //Pobranie z bazy wszystkich faktur ORDER BY i.date_of_invoice DESC
@@ -105,6 +113,7 @@ class Invoice
             "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.sum_brutto
                 FROM invoices AS i, contractors AS c
                 WHERE i.contractor_id=c.id
+                AND i.invoice_number LIKE '%$searchText%'
                 GROUP BY i.invoice_number
                 LIMIT $startFrom, $limit"
         );

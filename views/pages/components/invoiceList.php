@@ -1,5 +1,10 @@
 <h1> Lista Faktur</h1>
-
+<form action="" method="GET">
+    <div>
+        <label>Wyszukaj: <input type="text" name="search" placeholder="Nr faktury.."/></label>
+    </div>
+</form>
+<br>
 <table>
     <thead>
     <tr>
