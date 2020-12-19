@@ -32,6 +32,7 @@ Komponenty na stronie
 /* Typografia */
 h1 {
     margin: .7rem 0;
+    text-shadow: 1px 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .error{

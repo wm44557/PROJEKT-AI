@@ -4,8 +4,8 @@
 <div class="login-form__background">
     <div class="login-form__form">
         <div>
-            <h1>Zaloguj się</h1>
-            <p><small>Wpisz swój login i hasło, aby się zalogować.</small></p>
+            <h1>Logowanie</h1>
+            <p><small>Wpisz swój login i hasło.</small></p>
         </div>
         <form method="post">
 
