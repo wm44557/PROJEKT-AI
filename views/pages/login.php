@@ -1,6 +1,3 @@
-
-
-
 <div class="login-form__background">
     <div class="login-form__form">
         <div>
@@ -14,6 +11,7 @@
             <?php if (isset($errors['auth'])) echo "<p class='error'>" . $errors['auth'] . "</p>" ?>
             <br><br>
             <input class="button primary" type="submit" name="Zaloguj się" value="Zaloguj">
+
         </form>
     </div>
 
