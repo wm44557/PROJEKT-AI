@@ -8,6 +8,15 @@
     font-family: 'Rubik', sans-serif;
 }
 
+ul li{
+    list-style: none;
+}
+
+a, a:link, a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
 
 /*
 Paleta kolorow
@@ -19,7 +28,7 @@ Paleta kolorow
     --tertiary-color: #f6ae2d;
     --tertiary-color-darker: #F3712B;
 
-    --font-color-dark: #0F242E;
+    --font-color-dark: #255870;
     --font-color-light: #ffffff;
     --color-error: #e93636;
 }
@@ -96,6 +105,7 @@ Strona logowania
     justify-content: center;
     align-items: center;
     color: var(--font-color-light);
+    grid-column: span 2;
 
 
 
@@ -147,7 +157,8 @@ Pages layout
 */
 
 .background{
-    background-image: url("../images/background.jpg");
+    background: radial-gradient(ellipse at top, var(--primary-color), transparent),
+                radial-gradient(ellipse at bottom, var(--primary-color-darker), transparent);
     background-position: center;
     background-size: cover;
     height: 100%;
@@ -155,7 +166,7 @@ Pages layout
 
 .container{
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 250px 1fr;
     background: rgba( 255, 255, 255, 0.30 );
     box-shadow: 0 8px 32px 0 rgba(165, 165, 165, 0.37);
     backdrop-filter: blur( 3px );
@@ -164,5 +175,67 @@ Pages layout
 }
 
 .content{
-    max-width: 1000px;
+
+}
+
+/*
+Menu
+*/
+
+nav.nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 0;
+    background-color: white;
+    border-radius: 10px;
+}
+
+nav.nav .nav-logo{
+    display: flex;
+    justify-content: center;
+}
+nav.nav .nav-logo img{
+    width: 100px;
+}
+
+nav.nav .nav-menu{
+
+}
+
+nav.nav .nav-menu .nav-menu__item{
+    color: var(--font-color-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: .6rem 0;
+    position: relative;
+    padding: .5rem 1rem;
+    transition: .3s ease-in-out;
+}
+nav.nav .nav-menu .nav-menu__item.active{
+    position: relative;
+    background: linear-gradient(90deg, var(--primary-color-darker), var(--primary-color));
+}
+nav.nav .nav-menu .nav-menu__item.active::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background-color: var(--secondary-color);
+}
+nav.nav .nav-menu .nav-menu__item:hover{
+    opacity: .8;
+}
+
+nav.nav .nav-menu .nav-menu__item i{
+    margin-right: 1rem;
+}
+
+nav .button{
+    width: 150px;
 }
