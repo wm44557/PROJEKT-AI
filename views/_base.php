@@ -11,22 +11,29 @@
 <body>
 <div class="background">
     <div class="container">
-        <?php if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "user"): ?>
+        <?php if (isset($_SESSION["user_role"]))
+            if ($_SESSION["user_role"] == "user" || $_SESSION["user_role"] == "admin"):
+
+         ?>
         <nav class="nav">
             <div class="nav-logo">
-                <img src="<?php echo STATIC_URL.'images/logo.png'?>">
+                <a href="<?php echo STARTING_URL ?>">
+                    <img src="<?php echo STATIC_URL.'images/logo.png'?>">
+                </a>
             </div>
             <ul class="nav-menu">
-                <a href="<?php echo STARTING_URL ?>/user/add-invoice">
-                    <li class="nav-menu__item active">
+                <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/add-invoice">
+                    <li class="nav-menu__item <?php echo $page=='add-invoice' ?  "active" : "" ?>">
                         <i class="material-icons">library_add</i>
                         <p>Dodaj fakturę</p>
                     </li>
+
+                <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-invoice">
+                    <li class="nav-menu__item <?php echo $page=='list-invoice' ?  "active" : "" ?>">
+                        <i class="material-icons">history_edu</i>
+                        <p>Faktury</p>
+                    </li>
                 </a>
-                <li class="nav-menu__item">
-                    <i class="material-icons">history_edu</i>
-                    <p>Faktury</p>
-                </li>
                 <li class="nav-menu__item">
                     <i class="material-icons">assignment</i>
                     <p>Licencje</p>

@@ -25,7 +25,9 @@ class invoiceController
     {
         $invoice = new Invoice();
         $results = $invoice->listInvoice();
-        $router->render("pages/components/invoiceList", ['results' => $results]);
+        $router->render("pages/components/invoiceList", [
+            'page' => 'list-invoice',
+            'results' => $results]);
     }
 
     public function showInvoice($router)
@@ -34,7 +36,9 @@ class invoiceController
             $dataPost = $_POST;
             $invoice = new Invoice();
             $results = $invoice->showInvoice($dataPost);
-            $router->render("pages/components/invoiceShow", ['results' => $results]);
+            $router->render("pages/components/invoiceShow", [
+                'page' => 'list-invoice',
+                'results' => $results]);
         }
     }
 
