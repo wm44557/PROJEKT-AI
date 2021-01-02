@@ -82,7 +82,7 @@ class Invoice
     public function listInvoice()
     {
         $this->conn = new Database();
-
+        //dump($_GET);
         //$LIMIT słuzy do ustawiania ilosci rekordów na jednej stronie
         $limit = 5;
         if (isset($_GET["page"])) {
@@ -93,22 +93,35 @@ class Invoice
 
         $searchText = $_GET['search'] ?? '';
 
-        if ($searchText == '') {
-            $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices ");
-        } else {
-            $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices WHERE invoice_number LIKE '%$searchText%'");
-        }
+
+        $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices WHERE invoice_number LIKE '%$searchText%'");
 
         $totalRecords = $this->conn->single();
         $startFrom = ($currentPage - 1) * $limit;
         $totalPages = ceil($totalRecords->countRecords / $limit);
 
-        //Pobranie z bazy wszystkich faktur ORDER BY i.date_of_invoice DESC
+        //Wyszukanie po wybraniu jednej z opcji
+        $searchSelect = $_GET['searchSelect'] ?? 'invoice_number';
+        switch ($searchSelect) {
+            case "id":
+                $queryRow="AND i.id LIKE '%$searchText%'";
+                break;
+            case "name":
+                $queryRow="AND c.name LIKE '%$searchText%'";
+                break;
+            case "vat_id":
+                $queryRow="AND c.vat_id LIKE '%$searchText%'";
+                break;
+            default:
+                $queryRow="AND i.invoice_number LIKE '%$searchText%'";
+        }
+
+        //Pobranie z bazy wszystkich faktur
         $this->conn->query(
             "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.sum_brutto
                 FROM invoices AS i, contractors AS c
                 WHERE i.contractor_id=c.id
-                AND i.invoice_number LIKE '%$searchText%'
+                $queryRow
                 GROUP BY i.invoice_number
                 LIMIT $startFrom, $limit"
         );
