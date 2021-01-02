@@ -10,7 +10,7 @@
             <option value="vat_id">VAT ID kontrahenta</option>
             <option value="name">Nazwie kontrahenta</option>
         </select><br>
-        <label>Wyszukaj: <input type="text" name="search"  placeholder="..."/></label>
+        <label>Wyszukaj: <input type="text" name="search" value="<?php echo $_GET['search'] ?? ''?>"  placeholder="Invoice number.."/></label>
     </div>
 
     <input type="submit" value="Szukaj.." name="Result">
