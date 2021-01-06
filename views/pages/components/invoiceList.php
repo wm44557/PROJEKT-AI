@@ -1,11 +1,22 @@
 <h1> Lista Faktur</h1>
 <form action="" method="GET">
+
     <div>
-        <label>Wyszukaj: <input type="text" name="search"  placeholder="Nr faktury.."/></label>
+
+        <label for="searchSelect">Wyszukaj po:</label>
+        <select id="cars" name="searchSelect">
+            <option value="id">Identyfikatorze własnym</option>
+            <option value="invoice_number">Numerze faktury</option>
+            <option value="vat_id">VAT ID kontrahenta</option>
+            <option value="name">Nazwie kontrahenta</option>
+        </select><br>
+        <label>Wyszukaj: <input type="text" name="search" value="<?php echo $_GET['search'] ?? ''?>"  placeholder="Invoice number.."/></label>
     </div>
     <input type="radio" name="MyRadio" value="First" checked>Kupna<br>
     <input type="radio" name="MyRadio" value="Second">Sprzedaży
-    <input type="submit" value="Result" name="Result">
+
+
+    <input type="submit" value="Szukaj.." name="Result">
 </form>
 <br>
 <table>

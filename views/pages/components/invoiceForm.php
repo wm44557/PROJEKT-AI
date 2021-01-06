@@ -31,7 +31,7 @@
 
 
     <h2>Summary</h2>
-    <input type="number" name="sumNetto" placeholder="Netto SUM..">&nbsp;
+    <input type="number" name="sumNetto" placeholdgit er="Netto SUM..">&nbsp;
     <input type="number" name="sumVAT" placeholder="Vat SUM..">&nbsp;
     <input type="number" name="sumBrutto" placeholder="Brutto SUM..">
     <br>

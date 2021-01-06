@@ -64,7 +64,6 @@ foreach ($results['headerInvoice'] as $rowHeader) {
 ?>
 <br>
 <a href="<?php echo STARTING_URL?>/admin/list-invoice"><button>Wroc</button></a>
-<?php  echo '<br><br><br><br><br>';
-dump($results); ?>
+
 <br>
 
