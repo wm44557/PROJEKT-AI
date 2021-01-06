@@ -6,6 +6,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
+    color: var(--font-color-dark)
 }
 
 ul li{
@@ -28,7 +29,7 @@ Paleta kolorow
     --tertiary-color: #f6ae2d;
     --tertiary-color-darker: #F3712B;
 
-    --font-color-dark: #255870;
+    --font-color-dark: #0b4d67;
     --font-color-light: #ffffff;
     --color-error: #e93636;
 }
@@ -42,6 +43,10 @@ Komponenty na stronie
 h1 {
     margin: .7rem 0;
     text-shadow: 1px 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.light-color {
+    color: var(--font-color-light);
 }
 
 .error{
@@ -73,24 +78,30 @@ h1 {
     width: 100%;
     padding: 0.5rem 0.5rem;
     border: none;
-    box-shadow: 0px 0px 5px rgba(246, 174, 45, 0.4);
     text-transform: uppercase;
     border-radius: 5px;
     font-weight: bold;
-    color: var(--font-color-light);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
 .button.primary{
     background: linear-gradient(90deg, var(--tertiary-color), var(--tertiary-color-darker));
-
+    box-shadow: 0px 0px 5px rgba(246, 174, 45, 0.4);
+    color: var(--font-color-light);
 }
 
-.button.primary:hover{
+.button:hover{
     transform: scale(1.02);
-    border: 1px solid var(--primary-color);
+}
 
+.button.secondary{
+    border: 2px solid var(--secondary-color);
+    background: transparent;
+}
+
+.button.small{
+    width: 100px;
 }
 
 

@@ -1,8 +1,8 @@
 <div class="login-form__background">
     <div class="login-form__form">
         <div>
-            <h1>Logowanie</h1>
-            <p><small>Wpisz swój login i hasło.</small></p>
+            <h1 class="light-color">Logowanie</h1>
+            <p><small class="light-color">Wpisz swój login i hasło.</small></p>
         </div>
         <form method="post">
 

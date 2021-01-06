@@ -1,9 +1,11 @@
 
 
-<br>
+<a  href="<?php echo STARTING_URL . $_SESSION['user_role']?>"><button class="button primary small">Wróc</button></a>
+<br><br>
 <form class="box" method="post">
     <h2>Data:</h2>
-    <input type="text" name="invoiceNumber" placeholder="Invoice number.." <br><br>
+
+    <input type="text" name="invoiceNumber" placeholder="Invoice number.."><br><br>
     <input type="text" name="contractor" placeholder="Contractor name.."><br><br>
     <input type="text" name="contractorVatId" placeholder="Contractor vat ID.."><br><br>
 
@@ -35,7 +37,6 @@
     <br>
     <br>
     <br>
-    <input class="submit" type="submit" value="Send"><br>
+    <input class="button secondary small" type="submit" value="Wyślij"><br>
 </form>
 <br>
-<a href="<?php echo STARTING_URL?>/admin"><button>Wroc</button></a>

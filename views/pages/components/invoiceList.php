@@ -3,8 +3,8 @@
     <div>
         <label>Wyszukaj: <input type="text" name="search"  placeholder="Nr faktury.."/></label>
     </div>
-    <input type="radio" name="MyRadio" value="First" checked>First<br> //This one is automatically checked when the user opens the page
-    <input type="radio" name="MyRadio" value="Second">Second
+    <input type="radio" name="MyRadio" value="First" checked>Kupna<br>
+    <input type="radio" name="MyRadio" value="Second">Sprzedaży
     <input type="submit" value="Result" name="Result">
 </form>
 <br>
