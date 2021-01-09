@@ -60,24 +60,7 @@ class Invoice
         $this->conn->bindValue("owner", $dataPost['owner']);
         $this->conn->bindValue("invoiceId", $invoiceId->id);
         $this->conn->execute();
-
     }
-
-//    [invoiceNumber] => dsa
-//    [contractor] => ddas
-//    [contractorVatId] => 12312
-//    [dateInvoice] => 2020-12-18
-//    [type] => sale
-//    [sku] => 151
-//    [name] => Windows 10
-//    [description] => Licencja do windowsa 10
-//    [buyDate] => 2020-12-17
-//    [warranty] => 2020-12-18
-//    [valid] => 2020-12-19
-//    [priceNetto] => 800
-//    [vat] => 23
-//    [owner] => Andrzej
-
 
     public function listInvoice()
     {
@@ -90,30 +73,52 @@ class Invoice
         } else {
             $currentPage = 1;
         };
-
         $searchText = $_GET['search'] ?? '';
 
 
-        $this->conn->query("SELECT COUNT(*) as 'countRecords' FROM invoices WHERE invoice_number LIKE '%$searchText%'");
+        //Ustalanie przedzialu czasowego
+        $sinceDate = '0000-00-00';
+        $toDate = date("Y-m-d");
+
+        $getSince = $_GET['since_date'] ?? '';
+        $getTo = $_GET['to_date'] ?? '';
+
+        if ($getSince != NULL)
+            $sinceDate = $getSince;
+        if ($getTo != NULL)
+            $toDate = $getTo;
+
+        $dateFiltr = "AND i.date_of_invoice >= '$sinceDate'
+        AND i.date_of_invoice <= '$toDate'";
+
+
+        $this->conn->query("
+            SELECT COUNT(*) as 'countRecords' 
+            FROM invoices as i 
+            WHERE i.invoice_number 
+            LIKE '%$searchText%' 
+            $dateFiltr"
+        );
 
         $totalRecords = $this->conn->single();
         $startFrom = ($currentPage - 1) * $limit;
         $totalPages = ceil($totalRecords->countRecords / $limit);
 
+
         //Wyszukanie po wybraniu jednej z opcji
         $searchSelect = $_GET['searchSelect'] ?? 'invoice_number';
         switch ($searchSelect) {
             case "id":
-                $queryRow="AND i.id LIKE '%$searchText%'";
+                $queryRow = "AND i.id LIKE '%$searchText%'";
                 break;
             case "name":
-                $queryRow="AND c.name LIKE '%$searchText%'";
+                $queryRow = "AND c.name LIKE '%$searchText%'";
                 break;
             case "vat_id":
-                $queryRow="AND c.vat_id LIKE '%$searchText%'";
+                $queryRow = "AND c.vat_id LIKE '%$searchText%'";
                 break;
             default:
-                $queryRow="AND i.invoice_number LIKE '%$searchText%'";
+                $queryRow = "AND i.invoice_number LIKE '%$searchText%'";
         }
 
         //Pobranie z bazy wszystkich faktur
@@ -122,6 +127,7 @@ class Invoice
                 FROM invoices AS i, contractors AS c
                 WHERE i.contractor_id=c.id
                 $queryRow
+                $dateFiltr
                 GROUP BY i.invoice_number
                 LIMIT $startFrom, $limit"
         );
@@ -151,6 +157,7 @@ class Invoice
         $invoiceData['licenceData'] = $this->conn->resultSet();
         return $invoiceData;
     }
+
 }
 
 
