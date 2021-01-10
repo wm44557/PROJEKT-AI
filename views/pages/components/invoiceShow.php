@@ -67,3 +67,10 @@ foreach ($results['headerInvoice'] as $rowHeader) {
 
 <br>
 
+<h3>Pliki</h3>
+<form action="addfile" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="text" placeholder="Opis" name="description">
+    <input type="hidden" name="invoiceId" value="<?php echo $invoiceId; ?>">
+    <input type="submit" class="button primary small" value="Dodaj plik" name="addfile">
+</form>

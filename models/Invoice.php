@@ -5,6 +5,15 @@ namespace app\models;
 
 use app\utility\Database;
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 class Invoice
 {
@@ -158,6 +167,31 @@ class Invoice
         return $invoiceData;
     }
 
+    public function getInvoiceDocuments($invoiceId){
+        $this->conn = new Database();
+        $this->conn->query("SELECT d.name, d.added_at, d.description FROM documents d WHERE invoice_id=:invoiceId");
+        $this->conn->bindValue("invoiceId", $invoiceId);
+        return $this->conn->resultSet();
+    }
+
+    public function getOrCreateDirectory($invoiceId){
+        $this->conn = new Database();
+        $this->conn->query("SELECT dirpath FROM invoices WHERE id=:invoiceId");
+        $this->conn->bindValue("invoiceId", $invoiceId);
+        $res = $this->conn->single();
+        if (!$res->dirpath){
+            do{
+                $dirpath = generateRandomString();
+            } while(!mkdir('./media/'.$dirpath));
+            $this->conn->query("UPDATE invoices SET dirpath=:dirpath WHERE id=:invoiceId");
+            $this->conn->bindValue("dirpath", $dirpath);
+            $this->conn->bindValue("invoiceId", $invoiceId);
+            $this->conn->execute();
+            return $dirpath;
+        } else {
+            return $res->dirpath;
+        }
+    }
 }
 
 
