@@ -37,21 +37,24 @@ class invoiceController
             $invoice = new Invoice();
             $results = $invoice->showInvoice($dataPost);
             $files = $invoice->getInvoiceDocuments($dataPost['invoiceId']);
-            dump($_POST);
             $router->render("pages/components/invoiceShow", [
                 'page' => 'list-invoice',
                 'results' => $results,
-                'invoiceId' => $dataPost['invoiceId']]);
+                'invoiceId' => $dataPost['invoiceId'],
+                'files' => $files]);
         }
     }
 
     public function addFile(){
         dump($_POST);
         dump($_FILES);
+        $invoiceId = $_POST['invoiceId'];
         $invoice = new Invoice();
-        $dirpath = $invoice->getOrCreateDirectory($_POST['invoiceId']);
+        $dirpath = $invoice->getOrCreateDirectory($invoiceId);
         $dir = "media/".$dirpath.'/'.$_FILES['file']['name'];
-        move_uploaded_file( $_FILES['file']['tmp_name'], $dir) or die("Cos nei dziala");
+        if (move_uploaded_file( $_FILES['file']['tmp_name'], $dir)){
+            $invoice->addInvoiceDocument($invoiceId, $_FILES['file']['name'], $_POST['description']);
+        }
     }
 
 }

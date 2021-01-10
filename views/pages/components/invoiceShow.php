@@ -68,6 +68,12 @@ foreach ($results['headerInvoice'] as $rowHeader) {
 <br>
 
 <h3>Pliki</h3>
+<?php
+foreach ($files as $file){
+    echo $file->name . ' ' . $file->added_at . ' ' . $file->description;
+    echo '<br>';
+}
+?>
 <form action="addfile" method="post" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="text" placeholder="Opis" name="description">

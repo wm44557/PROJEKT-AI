@@ -171,7 +171,18 @@ class Invoice
         $this->conn = new Database();
         $this->conn->query("SELECT d.name, d.added_at, d.description FROM documents d WHERE invoice_id=:invoiceId");
         $this->conn->bindValue("invoiceId", $invoiceId);
-        return $this->conn->resultSet();
+        $res = $this->conn->resultSet();
+        return $res;
+    }
+
+    public function addInvoiceDocument($invoiceId, $documentName, $description){
+        $this->conn = new Database();
+        $this->conn->query('INSERT INTO documents(name, description, invoice_id) 
+                                VALUES (:name, :description, :invoiceId)');
+        $this->conn->bindValue("name", $documentName);
+        $this->conn->bindValue("description", $description);
+        $this->conn->bindValue("invoiceId", $invoiceId);
+        $this->conn->execute();
     }
 
     public function getOrCreateDirectory($invoiceId){
