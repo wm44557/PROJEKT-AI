@@ -32,17 +32,16 @@ class invoiceController
 
     public function showInvoice($router)
     {
-        if ($_POST) {
-            $dataPost = $_POST;
-            $invoice = new Invoice();
-            $results = $invoice->showInvoice($dataPost);
-            $files = $invoice->getInvoiceDocuments($dataPost['invoiceId']);
-            $router->render("pages/components/invoiceShow", [
-                'page' => 'list-invoice',
-                'results' => $results,
-                'invoiceId' => $dataPost['invoiceId'],
-                'files' => $files]);
-        }
+        $invoiceId = $_GET['invoiceId'];
+        $invoice = new Invoice();
+        $results = $invoice->showInvoice($invoiceId);
+        $files = $invoice->getInvoiceDocuments($invoiceId);
+        $router->render("pages/components/invoiceShow", [
+            'page' => 'list-invoice',
+            'results' => $results,
+            'invoiceId' => $invoiceId,
+            'files' => $files]);
+
     }
 
     public function addFile(){

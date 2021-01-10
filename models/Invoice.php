@@ -145,7 +145,7 @@ class Invoice
         return $records;
     }
 
-    public function showInvoice($dataPost)
+    public function showInvoice($invoiceId)
     {
         $this->conn = new Database();
         $this->conn->query("
@@ -154,7 +154,7 @@ class Invoice
             WHERE i.contractor_id=c.id
             AND i.id=:invoiceId;
             ");
-        $this->conn->bindValue("invoiceId", $dataPost['invoiceId']);
+        $this->conn->bindValue("invoiceId", $invoiceId);
         $invoiceData['headerInvoice'] = $this->conn->resultSet();
 
         $this->conn->query("
@@ -162,7 +162,7 @@ class Invoice
             FROM `licences` 
             WHERE invoice_id=:invoiceId
             ");
-        $this->conn->bindValue("invoiceId", $dataPost['invoiceId']);
+        $this->conn->bindValue("invoiceId", $invoiceId);
         $invoiceData['licenceData'] = $this->conn->resultSet();
         return $invoiceData;
     }

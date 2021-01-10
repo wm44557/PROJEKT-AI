@@ -6,7 +6,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/invoices/invoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/invoices/invoiceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pages/components/invoiceShow.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/components/invoiceShow.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/components/invoiceList.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/components/invoiceList.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,8 @@
       <workItem from="1608649759735" duration="4647000" />
       <workItem from="1609951769259" duration="738000" />
       <workItem from="1610279361975" duration="2138000" />
-      <workItem from="1610300347384" duration="5946000" />
+      <workItem from="1610300347384" duration="6167000" />
+      <workItem from="1610314068213" duration="2359000" />
     </task>
     <servers />
   </component>

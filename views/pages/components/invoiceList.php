@@ -36,6 +36,7 @@
         <th>Data wystawienia faktury</th>
         <th>Cena Brutto</th>
         <th>Szczegóły</th>
+        <th>Szczegóły2</th>
     </tr>
     </thead>
     <tbody>
@@ -54,6 +55,9 @@
              <input class='submit' type='submit' value='Details'>
           </form>
         </td>";
+        echo '<td><a href="'. STARTING_URL . '/' . $_SESSION['user_role'] . '/show-invoice?invoiceId=' . $row->ID . '"' . '>
+            <button class="button primary small">Szczegóły</button>
+        </a></td>';
         echo '</tr>';
     }
     ?>

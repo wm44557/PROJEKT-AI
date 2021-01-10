@@ -34,7 +34,7 @@ $router->post('/admin/list-invoice', [invoiceController::class, 'showInvoice']);
 $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
-$router->post('/user/list-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/user/show-invoice', [invoiceController::class, 'showInvoice']);
 $router->post('/user/addfile', [invoiceController::class, 'addFile']);
 
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
