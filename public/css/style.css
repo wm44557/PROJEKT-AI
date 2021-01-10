@@ -252,3 +252,12 @@ nav.nav .nav-menu .nav-menu__item i{
 nav .button{
     width: 150px;
 }
+
+
+/*
+Alert
+*/
+.confirm-alert{
+    position: absolute;
+    top: 0;
+}

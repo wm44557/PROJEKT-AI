@@ -169,7 +169,7 @@ class Invoice
 
     public function getInvoiceDocuments($invoiceId){
         $this->conn = new Database();
-        $this->conn->query("SELECT d.name, d.added_at, d.description FROM documents d WHERE invoice_id=:invoiceId");
+        $this->conn->query("SELECT d.id, d.name, d.added_at, d.description FROM documents d WHERE invoice_id=:invoiceId");
         $this->conn->bindValue("invoiceId", $invoiceId);
         $res = $this->conn->resultSet();
         return $res;
@@ -182,6 +182,13 @@ class Invoice
         $this->conn->bindValue("name", $documentName);
         $this->conn->bindValue("description", $description);
         $this->conn->bindValue("invoiceId", $invoiceId);
+        $this->conn->execute();
+    }
+
+    public function deleteInvoiceDocument($documentId){
+        $this->conn = new Database();
+        $this->conn->query('DELETE FROM documents WHERE id=:documentId');
+        $this->conn->bindValue("documentId", $documentId);
         $this->conn->execute();
     }
 
