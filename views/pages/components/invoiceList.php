@@ -1,8 +1,6 @@
 <h1> Lista Faktur</h1>
 <form action="" method="GET">
-
     <div>
-
         <label for="searchSelect">Wyszukaj po:</label>
         <select id="cars" name="searchSelect">
             <option value="id">Identyfikatorze własnym</option>
@@ -10,7 +8,17 @@
             <option value="vat_id">VAT ID kontrahenta</option>
             <option value="name">Nazwie kontrahenta</option>
         </select><br>
-        <label>Wyszukaj: <input type="text" name="search" value="<?php echo $_GET['search'] ?? ''?>"  placeholder="Invoice number.."/></label>
+        Wyszukaj: <input type="text" name="search" value="<?php echo $_GET['search'] ?? ''?>"  placeholder="Invoice number.."/><br>
+        <br>Przedział czasowy:<br>
+
+
+        <input type="date" name="since_date" value="<?php echo $_GET['since_date'] ?>"/>
+        <input type="date" name="to_date" value="<?php echo $_GET['to_date'] ?>"/>
+
+
+        <br><br>
+
+
     </div>
     <input type="radio" name="MyRadio" value="First" checked>Kupna<br>
     <input type="radio" name="MyRadio" value="Second">Sprzedaży
@@ -56,11 +64,14 @@
 <h5>Paginacja <br></h5>
 <?php
 
-if($_GET) $search=$_GET['search'] ?? "";
-else $search="";
+if($_GET) {
+    $search = $_GET['search'] ?? "";
+    $since=$_GET['since_date'] ?? "";
+    $to=$_GET['to_date'] ?? "";
+}
 
 for ($i = 1; $i <= $results['paginationInfo']; $i++) {
-    echo " <a href='?page=" . $i . "&search=".$search."'>" . $i . "</a>";
+    echo " <a href='?page=" . $i . "&search=".$search."&since_date=".$since."&to_date=".$to."'>" . $i . "</a>";
 }
 ?>
 
