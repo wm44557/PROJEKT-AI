@@ -5,10 +5,19 @@ namespace app\models;
 
 use app\utility\Database;
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 class Invoice
 {
-    public function addInvoice($dataPost)
+    public function addInvoice($dataPost): void
     {
         $this->conn = new Database();
 
@@ -62,7 +71,7 @@ class Invoice
         $this->conn->execute();
     }
 
-    public function listInvoice()
+    public function listInvoice(): array
     {
         $this->conn = new Database();
         //dump($_GET);
@@ -136,7 +145,7 @@ class Invoice
         return $records;
     }
 
-    public function showInvoice($dataPost)
+    public function showInvoice($invoiceId): array
     {
         $this->conn = new Database();
         $this->conn->query("
@@ -145,7 +154,7 @@ class Invoice
             WHERE i.contractor_id=c.id
             AND i.id=:invoiceId;
             ");
-        $this->conn->bindValue("invoiceId", $dataPost['invoiceId']);
+        $this->conn->bindValue("invoiceId", $invoiceId);
         $invoiceData['headerInvoice'] = $this->conn->resultSet();
 
         $this->conn->query("
@@ -153,11 +162,58 @@ class Invoice
             FROM `licences` 
             WHERE invoice_id=:invoiceId
             ");
-        $this->conn->bindValue("invoiceId", $dataPost['invoiceId']);
+        $this->conn->bindValue("invoiceId", $invoiceId);
         $invoiceData['licenceData'] = $this->conn->resultSet();
         return $invoiceData;
     }
 
+    public function getInvoiceDocuments($invoiceId):array
+    {
+        $this->conn = new Database();
+        $this->conn->query("SELECT d.id, d.name, d.added_at, d.description FROM documents d WHERE invoice_id=:invoiceId");
+        $this->conn->bindValue("invoiceId", $invoiceId);
+        $res = $this->conn->resultSet();
+        return $res;
+    }
+
+    public function addInvoiceDocument($invoiceId, $documentName, $description):void
+    {
+        $this->conn = new Database();
+        $this->conn->query('INSERT INTO documents(name, description, invoice_id) 
+                                VALUES (:name, :description, :invoiceId)');
+        $this->conn->bindValue("name", $documentName);
+        $this->conn->bindValue("description", $description);
+        $this->conn->bindValue("invoiceId", $invoiceId);
+        $this->conn->execute();
+    }
+
+    public function deleteInvoiceDocument($documentId):void
+    {
+        $this->conn = new Database();
+        $this->conn->query('DELETE FROM documents WHERE id=:documentId');
+        $this->conn->bindValue("documentId", $documentId);
+        $this->conn->execute();
+    }
+
+    public function getOrCreateDirectory($invoiceId):string
+    {
+        $this->conn = new Database();
+        $this->conn->query("SELECT dirpath FROM invoices WHERE id=:invoiceId");
+        $this->conn->bindValue("invoiceId", $invoiceId);
+        $res = $this->conn->single();
+        if (!$res->dirpath){
+            do{
+                $dirpath = generateRandomString();
+            } while(!mkdir('./media/'.$dirpath));
+            $this->conn->query("UPDATE invoices SET dirpath=:dirpath WHERE id=:invoiceId");
+            $this->conn->bindValue("dirpath", $dirpath);
+            $this->conn->bindValue("invoiceId", $invoiceId);
+            $this->conn->execute();
+            return $dirpath;
+        } else {
+            return $res->dirpath;
+        }
+    }
 }
 
 

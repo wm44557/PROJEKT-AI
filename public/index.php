@@ -6,11 +6,13 @@ require_once realpath("../vendor/autoload.php");
 require_once("../config/config.php");
 require_once("../utility/debug.php");
 
+
 use app\utility\Router;
 use app\controllers\loginController;
 use app\controllers\adminController;
 use app\controllers\userController;
 use app\controllers\invoices\invoiceController;
+use app\controllers\invoices\statisticsController;
 
 $router = new Router();
 
@@ -34,7 +36,10 @@ $router->post('/admin/list-invoice', [invoiceController::class, 'showInvoice']);
 $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
-$router->post('/user/list-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/user/show-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/user/stats', [statisticsController::class, 'showStats']);
+$router->post('/user/addfile', [invoiceController::class, 'addFile']);
+$router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);
 
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/auditor/list-invoice', [invoiceController::class, 'showInvoice']);

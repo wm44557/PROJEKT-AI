@@ -67,3 +67,38 @@ foreach ($results['headerInvoice'] as $rowHeader) {
 
 <br>
 
+<h3>Pliki</h3>
+<table>
+    <thead>
+        <th>Nazwa pliku</th>
+        <th>Dodano</th>
+        <th>Opis</th>
+    </thead>
+    <tbody>
+    <?php foreach ($files as $file): ?>
+        <tr>
+            <td><a target="_blank" href="<?php echo STARTING_URL . '/media/' . $dirpath . '/' . $file->name; ?>"><?= $file->name?></a></td>
+            <td><?= $file->added_at?></td>
+            <td><?= $file->description?></td>
+            <td>
+                <form action="deletefile" method="post" onsubmit="return confirm('Czy chcesz usunąc ten plik?');">
+                    <input type="hidden" name="fileId" value="<?= $file->id?>">
+                    <input type="hidden" name="fileName" value="<?= $file->name; ?>">
+                    <input type="hidden" name="invoiceId" value="<?= $invoiceId; ?>">
+                    <input type="submit" class="button secondary small" value="Usun">
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<form action="addfile" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="text" placeholder="Opis" name="description">
+    <input type="hidden" name="invoiceId" value="<?php echo $invoiceId; ?>">
+    <input type="submit" class="button primary small" value="Dodaj plik" name="addfile">
+</form>
+
+
+

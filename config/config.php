@@ -5,3 +5,4 @@ define('DB_PASS', '');
 define('DB_NAME', 'ai_lab10');
 define('STARTING_URL', '/AI_lab/ai_lab10/PROJEKT-AI');
 define('STATIC_URL', 'http://localhost/AI_lab/ai_lab10/PROJEKT-AI/public/');
+define('STATIC_COMPONENT', 'C:\xampp\htdocs\AI_lab\ai_lab10\PROJEKT-AI\views');
