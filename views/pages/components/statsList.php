@@ -1,10 +1,2 @@
-<?php
-
-
-namespace app\views\pages\components;
-
-
-class statsList
-{
-
-}
+<h1>Statystyki</h1>
+<?php dump($results);?>

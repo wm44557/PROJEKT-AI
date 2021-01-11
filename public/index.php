@@ -10,6 +10,7 @@ use app\utility\Router;
 use app\controllers\loginController;
 use app\controllers\adminController;
 use app\controllers\userController;
+use app\controllers\invoices\statisticsController;
 use app\controllers\invoices\invoiceController;
 
 $router = new Router();
@@ -35,6 +36,8 @@ $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/user/list-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/user/statistics', [statisticsController::class, 'mainStatistics']);
+
 
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/auditor/list-invoice', [invoiceController::class, 'showInvoice']);

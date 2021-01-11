@@ -23,10 +23,12 @@
                         <p>Dodaj fakturę</p>
                     </li>
                 </a>
+                <a href="<?php echo STARTING_URL ?>/user/list-invoice">
                 <li class="nav-menu__item">
                     <i class="material-icons">history_edu</i>
                     <p>Faktury</p>
                 </li>
+                </a>
                 <li class="nav-menu__item">
                     <i class="material-icons">assignment</i>
                     <p>Licencje</p>
@@ -35,10 +37,17 @@
                     <i class="material-icons">devices</i>
                     <p>Sprzęty</p>
                 </li>
+                <a href="<?php echo STARTING_URL ?>/user/statistics">
+                <li class="nav-menu__item">
+                    <i class="material-icons">insert_chart</i>
+                    <p>Statystyki</p>
+                </li>
+                </a>
                 <li class="nav-menu__item">
                     <i class="material-icons">settings</i>
                     <p>Ustawienia użytkownika</p>
                 </li>
+
             </ul>
             <form action="<?php echo STARTING_URL ?>/logout" method="post"><input class="button primary" type="submit"
                                                                                   value="Wyloguj"></form>
