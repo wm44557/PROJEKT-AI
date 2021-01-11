@@ -1,6 +1,5 @@
 <?php
 
-declare(strict_types=1);
 
 namespace app\models;
 
@@ -78,11 +77,9 @@ class Invoice
 
 
         //Ustalanie przedzialu czasowego
-        //Format domyslny, gdy uzytkownik nie wybierze przedzialu
         $sinceDate = '0000-00-00';
         $toDate = date("Y-m-d");
 
-        //Format gdy uzytkownik wybierze przedzial
         $getSince = $_GET['since_date'] ?? '';
         $getTo = $_GET['to_date'] ?? '';
 
@@ -91,8 +88,6 @@ class Invoice
         if ($getTo != NULL)
             $toDate = $getTo;
 
-
-        //Przygotowanie
         $dateFiltr = "AND i.date_of_invoice >= '$sinceDate'
         AND i.date_of_invoice <= '$toDate'";
 
