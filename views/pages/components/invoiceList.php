@@ -2,7 +2,7 @@
 <form action="" method="GET">
     <div>
         <label for="searchSelect">Wyszukaj po:</label>
-        <select id="cars" name="searchSelect">
+        <select id="cars" name="searchSelect" onchange="changeSelector()">
             <option value="id">Identyfikatorze własnym</option>
             <option value="invoice_number">Numerze faktury</option>
             <option value="vat_id">VAT ID kontrahenta</option>
@@ -36,7 +36,6 @@
         <th>Data wystawienia faktury</th>
         <th>Cena Brutto</th>
         <th>Szczegóły</th>
-        <th>Szczegóły2</th>
     </tr>
     </thead>
     <tbody>
@@ -49,12 +48,6 @@
         echo '<td>' . $row->vat_id . '</td>';
         echo '<td>' . $row->date_of_invoice . '</td>';
         echo '<td>' . $row->sum_brutto . '</td>';
-        echo "<td> 
-          <form method='POST'>
-             <input type='hidden' value='$row->ID' name='invoiceId'/>
-             <input class='submit' type='submit' value='Details'>
-          </form>
-        </td>";
         echo '<td><a href="'. STARTING_URL . '/' . $_SESSION['user_role'] . '/show-invoice?invoiceId=' . $row->ID . '"' . '>
             <button class="button primary small">Szczegóły</button>
         </a></td>';
@@ -85,3 +78,21 @@ for ($i = 1; $i <= $results['paginationInfo']; $i++) {
 <a href="<?php echo STARTING_URL ?>">
     <button>Wróć</button>
 </a>
+
+<script>
+    const OPTIONS = [
+        "Identyfikator własny",
+        "Numer faktury",
+        "Vat ID kontrahenta",
+        "Nazwa kontrahenta",
+    ]
+
+
+    const selector = document.querySelector('select[name="searchSelect"]');
+
+    function changeSelector(){
+        const search = document.querySelector('input[name="search"]');
+        search.placeholder = OPTIONS[selector.selectedIndex];
+    }
+    changeSelector();
+</script>
