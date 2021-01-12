@@ -8,7 +8,7 @@
             <option value="vat_id">VAT ID kontrahenta</option>
             <option value="name">Nazwie kontrahenta</option>
         </select><br>
-        Wyszukaj: <input type="text" name="search" value="<?php echo $_GET['search'] ?? ''?>"  placeholder="Invoice number.."/><br>
+        Wyszukaj: <input type="text" class="form-input" name="search" value="<?php echo $_GET['search'] ?? ''?>"  placeholder="Invoice number.."/><br>
         <br>Przedział czasowy:<br>
 
 

@@ -83,12 +83,18 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button.primary{
     background: linear-gradient(90deg, var(--tertiary-color), var(--tertiary-color-darker));
     box-shadow: 0px 0px 5px rgba(246, 174, 45, 0.4);
     color: var(--font-color-light);
+}
+.button > * {
+    color: inherit;
 }
 
 .button:hover{
@@ -100,12 +106,30 @@ h1 {
     background: transparent;
 }
 
+.button.warning{
+    background-color: var(--color-error);
+    color: var(--font-color-light);
+}
+
 .button.small{
     width: 100px;
+    font-size: .8rem;
+    padding: .2rem .3rem;
 }
 
 .button.big {
     width: 400px;
+}
+
+.buttons-group{
+    display: flex;
+    margin: 1rem 0;
+}
+.buttons-group .button:first-child{
+    margin-left: 0;
+}
+.buttons-group .button{
+    margin-left: 0.3rem;
 }
 
 
@@ -271,6 +295,16 @@ Alert
 /*
 Formularze
 */
+.form-input{
+    padding: 0.3rem 0.6rem;
+    background-color: rgba(255,255,255,.5);
+    border: 1px solid var(--font-color-light);
+    border-radius: 5px;
+}
+.form-input::placeholder{
+    color: var(--font-color-dark);
+    opacity: 0.3;
+}
 
 .form-box{
     display: grid;
@@ -286,7 +320,7 @@ Formularze
     flex-direction: column;
     padding-bottom: 1rem;
 }
-.form-input-label input{
+.form-input-label input, .form-input-label select{
     width: 300px;
     padding: 0.3rem 0.6rem;
     background-color: rgba(255,255,255,.5);
@@ -298,9 +332,50 @@ Formularze
     opacity: 0.3;
 }
 
+
 .form-fields{
     display: flex;
     padding: .5rem 1rem;
     flex-direction: column;
     align-items: center;
+}
+
+/* Tabela Formularza */
+.form-table-container{
+    margin: 1rem 0;
+    grid-column: span 2;
+}
+
+.table-container{
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+table.form-table{
+    width: 100%;
+    background-color: rgba(255, 255, 255, .3);
+    border-collapse: collapse;
+}
+table.form-table th{
+    background: rgba(255, 255, 255, .5);
+    padding: .2rem;
+}
+table.form-table tr:nth-child(2n){
+    background: rgba(255, 255, 255, .2);
+}
+table.form-table td, table.form-table th{
+    border: 1px solid rgba(255, 255, 255, .8);
+}
+table.form-table input[type="checkbox"]{
+    width: 18px;
+    background: none;
+}
+table.form-table input[type="checkbox"]:checked{
+    background-color: var(--tertiary-color);
+}
+table.form-table input{
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: center;
 }

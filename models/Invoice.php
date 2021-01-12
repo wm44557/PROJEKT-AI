@@ -51,24 +51,30 @@ class Invoice
         $invoiceId = $this->conn->single();
         dump($invoiceId);
 
-        //Dodanie licencji do bazy oraz przypisanie konkretnej licencji do faktury
-        $this->conn->query(
-            "INSERT INTO 
-            `licences`(`sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id`) 
-            VALUES (:sku,:name,:description,:serialNumber,:buyDate,:warranty,:valid,:priceNetto,:vat,:priceBrutto,:owner,:invoiceId)");
-        $this->conn->bindValue('sku', $dataPost['sku']);
-        $this->conn->bindValue("name", $dataPost['name']);
-        $this->conn->bindValue("serialNumber", $dataPost['serialNumber']);
-        $this->conn->bindValue("description", $dataPost['description']);
-        $this->conn->bindValue("buyDate", $dataPost['buyDate']);
-        $this->conn->bindValue("warranty", $dataPost['warranty']);
-        $this->conn->bindValue("valid", $dataPost['valid']);
-        $this->conn->bindValue("priceNetto", $dataPost['priceNetto']);
-        $this->conn->bindValue("vat", $dataPost['vat']);
-        $this->conn->bindValue("priceBrutto", $dataPost['priceBrutto']);
-        $this->conn->bindValue("owner", $dataPost['owner']);
-        $this->conn->bindValue("invoiceId", $invoiceId->id);
-        $this->conn->execute();
+        //Dodanie licencji do bazy oraz przypisanie konkretnych licencji do faktury
+        $counter=(int)$dataPost['licencesCount'];
+        for($i=1; $i<=$counter; $i++){
+            if (isset($dataPost['licenceSku-'.$i])){
+                $this->conn->query(
+                    "INSERT INTO 
+                         `licences`(`sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id`) 
+                         VALUES (:sku,:name,:description,:serialNumber,:buyDate,:warranty,:valid,:priceNetto,:vat,:priceBrutto,:owner,:invoiceId)");
+                $this->conn->bindValue('sku', $dataPost['licenceSku-'.$i]);
+                $this->conn->bindValue("name", $dataPost['licenceName-'.$i]);
+                $this->conn->bindValue("serialNumber", $dataPost['licenceSerial-'.$i]);
+                $this->conn->bindValue("description", $dataPost['licenceDescription-'.$i]);
+                $this->conn->bindValue("buyDate", $dataPost['licenceBuyDate-'.$i]);
+                $this->conn->bindValue("warranty", $dataPost['licenceWarrantyDate-'.$i]);
+                $this->conn->bindValue("valid", $dataPost['licenceValidTo-'.$i]);
+                $this->conn->bindValue("priceNetto", $dataPost['licenceNetto-'.$i]);
+                $this->conn->bindValue("vat", $dataPost['licenceVat-'.$i]);
+                $this->conn->bindValue("priceBrutto", $dataPost['licenceBrutto-'.$i]);
+                $this->conn->bindValue("owner", $dataPost['licenceWhoUses-'.$i]);
+                $this->conn->bindValue("invoiceId", $invoiceId->id);
+                $this->conn->execute();
+            }
+        }
+
     }
 
     public function listInvoice()
@@ -87,7 +93,7 @@ class Invoice
 
         //Ustalanie przedzialu czasowego
         $sinceDate = '0000-00-00';
-        $toDate = date("Y-m-d");
+        $toDate = date("Y-m-d", strtotime("+1 day"));
 
         $getSince = $_GET['since_date'] ?? '';
         $getTo = $_GET['to_date'] ?? '';
