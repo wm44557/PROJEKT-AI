@@ -25,14 +25,14 @@
             <input type="text" name="contractorVatId" placeholder="Wprowadź vat id kontrahenta">
         </label>
 
-        <label>
+        <label class="form-input-label text">
             Data wystawienia faktury
-            <input class="form-input" type="date" name="dateInvoice" placeholder="Podaj datę wystawienia faktury">
+            <input type="date" name="dateInvoice" placeholder="Podaj datę wystawienia faktury">
         </label>
 
-        <label>
+        <label class="form-input-label text">
             Typ faktury
-            <select name="type" class="form-input">
+            <select name="type">
                 <option value="sale">Sprzedaży</option>
                 <option value="buy">Kupna</option>
             </select>
