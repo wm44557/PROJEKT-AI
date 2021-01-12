@@ -11,7 +11,7 @@ class Device
     public function list()
     {
         $this->conn = new Database();
-
+        //dump($_GET);
         //$LIMIT słuzy do ustawiania ilosci rekordów na jednej stronie
         $limit = 5;
         if (isset($_GET["page"])) {
@@ -21,10 +21,22 @@ class Device
         };
         $searchText = $_GET['search'] ?? '';
 
+        //Wyszukanie po wybraniu jednej z opcji
+        $searchSelect = $_GET['searchSelect'] ?? 'sku';
+        switch ($searchSelect) {
+            case "serial_number":
+                $queryRow = "AND e.serial_number LIKE '%$searchText%'";
+                $searchRowInCount="serial_number";
+                break;
+            default:
+                $queryRow = "AND e.sku LIKE '%$searchText%'";
+                $searchRowInCount="sku";
+        }
+
         $this->conn->query("
-            SELECT COUNT(*) as 'countRecords' 
-            FROM invoices as i 
-            WHERE i.invoice_number 
+            SELECT COUNT($searchRowInCount) as 'countRecords' 
+            FROM equipement
+            WHERE $searchRowInCount 
             LIKE '%$searchText%'"
         );
 
@@ -33,30 +45,17 @@ class Device
         $totalPages = ceil($totalRecords->countRecords / $limit);
 
 
-        //Wyszukanie po wybraniu jednej z opcji
-        $searchSelect = $_GET['searchSelect'] ?? 'invoice_number';
-        switch ($searchSelect) {
-            case "id":
-                $queryRow = "AND i.id LIKE '%$searchText%'";
-                break;
-            case "name":
-                $queryRow = "AND c.name LIKE '%$searchText%'";
-                break;
-        }
-
-        //Pobranie z bazy wszystkich faktur
+        //Pobranie z bazy wszystkich urządzeń
         $this->conn->query(
-            "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.sum_brutto
-                FROM invoices AS i, contractors AS c
-                WHERE i.contractor_id=c.id
+            "SELECT e.sku, e.name, e.description, e.serial_number, e.buy_date, e.warranty_to, e.price_netto, e.who_uses, i.invoice_number
+                FROM equipement as e, invoices as i
+                WHERE i.id=e.invoice_id
                 $queryRow
-                GROUP BY i.invoice_number
+                GROUP BY e.sku
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();
         $records['paginationInfo'] = $totalPages;
         return $records;
-
     }
-
 }
