@@ -36,13 +36,14 @@ $router->post('/admin/list-invoice', [invoiceController::class, 'showInvoice']);
 
 //$router->get('/user/edit', [userController::class, 'user_edit']);
 //$router->post('/user/edit', [userController::class, 'user_edit']);
+$router->get('/user', [statisticsController::class, 'showStats']);
 $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->get('/user/show-invoice', [invoiceController::class, 'showInvoice']);
 $router->get('/user/list-licence', [licenceController::class, 'listLicence']);
 $router->get('/user/list-device', [deviceController::class, 'listDevice']);
-$router->get('/user/stats', [statisticsController::class, 'showStats']);
+
 $router->post('/user/addfile', [invoiceController::class, 'addFile']);
 $router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);
 

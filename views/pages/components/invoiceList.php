@@ -2,7 +2,7 @@
 <form action="" method="GET">
     <div>
         <label for="searchSelect">Wyszukaj po:</label>
-        <select name="searchSelect" onchange="changeSelector()">
+        <select name="searchSelect" onchange="changeSelector()" value="">
             <option value="id">Identyfikatorze własnym</option>
             <option value="invoice_number">Numerze faktury</option>
             <option value="vat_id">VAT ID kontrahenta</option>

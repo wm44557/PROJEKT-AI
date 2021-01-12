@@ -1,4 +1,4 @@
-<?php dump($results); ?>
+
 <h1>
     Statystki
 

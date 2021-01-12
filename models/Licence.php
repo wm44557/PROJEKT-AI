@@ -25,11 +25,11 @@ class Licence
         $searchSelect = $_GET['searchSelect'] ?? 'sku';
         switch ($searchSelect) {
             case "serial_number":
-                $queryRow = "WHERE serial_number LIKE '%$searchText%'";
+                $queryRow = "AND l.serial_number LIKE '%$searchText%'";
                 $searchRowInCount="serial_number";
                 break;
             default:
-                $queryRow = "WHERE sku LIKE '%$searchText%'";
+                $queryRow = "AND l.sku LIKE '%$searchText%'";
                 $searchRowInCount="sku";
         }
 
@@ -45,13 +45,13 @@ class Licence
         $totalPages = ceil($totalRecords->countRecords / $limit);
 
 
-
         //Pobranie z bazy wszystkich licencji
         $this->conn->query(
-            "SELECT sku, name, description, serial_number, buy_date, warranty_to, valid_to, price_netto, who_uses
-                FROM licences
+            "SELECT l.sku, l.name, l.description, l.serial_number, l.buy_date, l.warranty_to, l.valid_to, l.price_netto, l.who_uses, i.invoice_number
+                FROM licences as l, invoices as i
+                WHERE i.id=l.invoice_id
                 $queryRow
-                GROUP BY sku
+                GROUP BY l.sku
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();

@@ -16,7 +16,7 @@ class statisticsController
         $results['countRecords']=$stats->countRecords();
         $results['sumBruttoInv']=$stats->sumInv('sum_brutto');
         $results['sumNettoInv']=$stats->sumInv('sum_netto');
-        $router->render("pages/components/statsList", [
+        $router->render("pages/user/panel", [
             'results' => $results]);
     }
 }

@@ -22,6 +22,7 @@
         <th>Ważne do</th>
         <th>Cena Netto</th>
         <th>Użytkownik</th>
+        <th>Numer faktury</th>
 
     </tr>
     </thead>
@@ -37,6 +38,7 @@
         echo '<td>' . $row->warranty_to . '</td>';
         echo '<td>' . $row->price_netto . '</td>';
         echo '<td>' . $row->who_uses . '</td>';
+        echo '<td>' . $row->invoice_number . '</td>';
         echo '</tr>';
     }
     ?>
