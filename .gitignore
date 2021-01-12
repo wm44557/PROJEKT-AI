@@ -1,7 +1,7 @@
 /config/config.php
-/public/.htaccess
-/public/media
-/vendor
+.htaccess
+/public/media/*
+/vendor/
 
 ### JetBrains ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
