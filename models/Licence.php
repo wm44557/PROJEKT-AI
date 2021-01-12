@@ -21,10 +21,22 @@ class Licence
         };
         $searchText = $_GET['search'] ?? '';
 
+        //Wyszukanie po wybraniu jednej z opcji
+        $searchSelect = $_GET['searchSelect'] ?? 'sku';
+        switch ($searchSelect) {
+            case "serial_number":
+                $queryRow = "WHERE serial_number LIKE '%$searchText%'";
+                $searchRowInCount="serial_number";
+                break;
+            default:
+                $queryRow = "WHERE sku LIKE '%$searchText%'";
+                $searchRowInCount="sku";
+        }
+
         $this->conn->query("
-            SELECT COUNT(*) as 'countRecords' 
-            FROM licences as l
-            WHERE l.sku 
+            SELECT COUNT($searchRowInCount) as 'countRecords' 
+            FROM licences
+            WHERE $searchRowInCount 
             LIKE '%$searchText%'"
         );
 
@@ -32,18 +44,6 @@ class Licence
         $startFrom = ($currentPage - 1) * $limit;
         $totalPages = ceil($totalRecords->countRecords / $limit);
 
-
-        //Wyszukanie po wybraniu jednej z opcji
-        $searchSelect = $_GET['searchSelect'] ?? 'sku';
-        dump($searchSelect);
-        switch ($searchSelect) {
-            case "serial_number":
-                $queryRow = "WHERE serial_number LIKE '%$searchText%'";
-                break;
-            default:
-                $queryRow = "WHERE sku LIKE '%$searchText%'";
-
-        }
 
 
         //Pobranie z bazy wszystkich licencji

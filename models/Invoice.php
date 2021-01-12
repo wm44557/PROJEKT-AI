@@ -110,7 +110,6 @@ class Invoice
         };
         $searchText = $_GET['search'] ?? '';
 
-
         //Ustalanie przedzialu czasowego
         $sinceDate = '0000-00-00';
         $toDate = date("Y-m-d", strtotime("+1 day"));
@@ -126,35 +125,40 @@ class Invoice
         $dateFiltr = "AND i.date_of_invoice >= '$sinceDate'
         AND i.date_of_invoice <= '$toDate'";
 
-
-        $this->conn->query("
-            SELECT COUNT(*) as 'countRecords' 
-            FROM invoices as i 
-            WHERE i.invoice_number 
-            LIKE '%$searchText%' 
-            $dateFiltr"
-        );
-
-        $totalRecords = $this->conn->single();
-        $startFrom = ($currentPage - 1) * $limit;
-        $totalPages = ceil($totalRecords->countRecords / $limit);
-
-
         //Wyszukanie po wybraniu jednej z opcji
         $searchSelect = $_GET['searchSelect'] ?? 'invoice_number';
         switch ($searchSelect) {
             case "id":
                 $queryRow = "AND i.id LIKE '%$searchText%'";
+                $searchRowInCount="i.id";
                 break;
             case "name":
                 $queryRow = "AND c.name LIKE '%$searchText%'";
+                $searchRowInCount="c.name";
                 break;
             case "vat_id":
                 $queryRow = "AND c.vat_id LIKE '%$searchText%'";
+                $searchRowInCount="c.vat_id";
                 break;
             default:
                 $queryRow = "AND i.invoice_number LIKE '%$searchText%'";
+                $searchRowInCount="i.invoice_number";
         }
+
+        $this->conn->query("
+            SELECT COUNT($searchRowInCount) as 'countRecords' 
+            FROM invoices as i
+            LEFT JOIN contractors as c
+            ON i.contractor_id=c.id
+            WHERE $searchRowInCount
+            LIKE '%$searchText%' 
+            $dateFiltr"
+        );
+
+
+        $totalRecords = $this->conn->single();
+        $startFrom = ($currentPage - 1) * $limit;
+        $totalPages = ceil($totalRecords->countRecords / $limit);
 
         //Pobranie z bazy wszystkich faktur
         $this->conn->query(

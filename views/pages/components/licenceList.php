@@ -2,7 +2,7 @@
 <form action="" method="GET">
     <div>
         <label for="searchSelect">Wyszukaj po:</label>
-        <select id="cars" name="searchSelect" onchange="changeSelector()">
+        <select name="searchSelect" onchange="changeSelector()">
             <option value="sku">Numer inwentarzowy</option>
             <option value="serial_number">Klucz seryjny</option>
         </select><br>
@@ -49,12 +49,15 @@
 <h5>Paginacja <br></h5>
 <?php
 
+
 if($_GET) {
     $search = $_GET['search'] ?? "";
+    $searchSelect = $_GET['searchSelect'] ?? "";
 }
 
 for ($i = 1; $i <= $results['paginationInfo']; $i++) {
-    echo " <a href='?page=" . $i . "&search=".$search."'>" . $i . "</a>";
+    echo " <a href='?page=" . $i . "&searchSelect=".$searchSelect. "&search=".$search."'>" . $i . "</a>";
+
 }
 ?>
 
