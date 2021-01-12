@@ -83,8 +83,24 @@ for ($i = 1; $i <= $results['paginationInfo']; $i++) {
         "Nazwa kontrahenta",
     ]
 
+    const searchOptions = {
+        "id": 0,
+        "invoice_number": 1,
+        "vat_id": 2,
+        "name": 3,
+    }
+
 
     const selector = document.querySelector('select[name="searchSelect"]');
+
+    const url_str = window.location;
+    const url = new URL(url_str);
+
+    const searchBy = url.searchParams.get("searchSelect");
+
+    if (searchBy){
+        selector.selectedIndex = searchOptions[searchBy];
+    }
 
     function changeSelector(){
         const search = document.querySelector('input[name="search"]');
