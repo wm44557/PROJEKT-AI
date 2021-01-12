@@ -120,16 +120,26 @@
         "name": 3,
     }
 
+    const radioOptions = {
+        "First": 0,
+        "Second": 1,
+    }
+
 
     const selector = document.querySelector('select[name="searchSelect"]');
+    const selectorRadio = document.querySelector('select[name="MyRadio"]');
 
     const url_str = window.location;
     const url = new URL(url_str);
 
     const searchBy = url.searchParams.get("searchSelect");
+    const radio = url.searchParams.get("MyRadio");
 
     if (searchBy){
         selector.selectedIndex = searchOptions[searchBy];
+    }
+    if (radio){
+        selectorRadio.selectedIndex = radioOptions[radio];
     }
 
     function changeSelector(){

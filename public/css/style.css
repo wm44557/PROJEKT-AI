@@ -57,6 +57,10 @@ h1 {
 .bold{
     font-weight: 700;
 }
+.line-bottom{
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--font-color-light);
+}
 
 
 /* Formularze */
@@ -236,6 +240,7 @@ Pages layout
 }
 
 .box{
+    width: 100%;
     max-width: 1000px;
 }
 /*
@@ -360,6 +365,12 @@ Formularze
     align-items: center;
 }
 
+.small-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* Tabela Formularza */
 .form-table-container{
     margin: 1rem 0;
@@ -402,6 +413,9 @@ table.form-table input{
 table.form-table.spacing td{
     padding: .2rem .3rem;
 }
+table.form-table.align td{
+    text-align: center;
+}
 
 /*
 Searchbar
@@ -422,4 +436,16 @@ Pagination
     flex-direction: column;
     justify-self: center;
     align-items: center;
+}
+
+/*
+Invoice info
+*/
+.info{
+    padding: 1rem;
+    background-color: rgba(255,255,255, .3);
+    border-radius: 10px;
+}
+.info p{
+    margin: .2rem 0;
 }
