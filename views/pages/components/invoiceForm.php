@@ -1,6 +1,6 @@
 
 
-<a style="text-align: right" href="<?php echo STARTING_URL . '/' . $_SESSION['user_role']?>"><button class="button secondary small">Wróć</button></a>
+<a class="toright" href="<?php echo STARTING_URL . '/' . $_SESSION['user_role']?>"><button class="button secondary small back">Wróć</button></a>
 <br><br>
 <form class="form-box" method="post" enctype="multipart/form-data">
     <div class="form-info">

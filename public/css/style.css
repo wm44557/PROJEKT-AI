@@ -132,6 +132,12 @@ h1 {
     margin-left: 0.3rem;
 }
 
+.toright{
+    align-self: flex-end;
+}
+.toleft{
+    align-self: flex-start;
+}
 
 /*
 Strona logowania
@@ -219,6 +225,7 @@ Pages layout
     padding: 3rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 /*
@@ -308,7 +315,8 @@ Formularze
 
 .form-box{
     display: grid;
-    grid-template-columns: 30% 1fr;
+    grid-template-columns: 250px 1fr;
+    max-width: 1000px;
 }
 .form-info{
     padding: 0.5rem 1rem 0.5rem 0;
