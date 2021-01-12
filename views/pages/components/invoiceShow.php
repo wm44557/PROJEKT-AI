@@ -113,7 +113,7 @@
     <div class="form-table-container">
         <h2>Dokumenty</h2>
         <p>Dokumenty przypisane do faktury</p>
-        <table class="form-table">
+        <table class="form-table align">
             <thead>
             <th>Nazwa pliku</th>
             <th>Dodano</th>
