@@ -26,7 +26,7 @@ class invoiceController
         $invoice = new Invoice();
         $results = $invoice->listInvoice();
         $router->render("pages/components/invoiceList", [
-            'page' => 'list-invoice',
+            'page_name' => 'list-invoice',
             'results' => $results]);
     }
 
@@ -38,7 +38,7 @@ class invoiceController
         $files = $invoice->getInvoiceDocuments($invoiceId);
         $dirpath = $invoice->getOrCreateDirectory($invoiceId);
         $router->render("pages/components/invoiceShow", [
-            'page' => 'list-invoice',
+            'page_name' => 'list-invoice',
             'results' => $results,
             'invoiceId' => $invoiceId,
             'files' => $files,
