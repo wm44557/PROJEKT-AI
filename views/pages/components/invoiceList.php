@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <a class="toright" href="<?php echo STARTING_URL ?>">
     <button class="button secondary small">Wróć</button>
 </a>
