@@ -51,7 +51,7 @@ class Licence
                 FROM licences as l, invoices as i
                 WHERE i.id=l.invoice_id
                 $queryRow
-                GROUP BY l.sku
+                GROUP BY l.id
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();

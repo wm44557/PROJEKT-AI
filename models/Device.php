@@ -51,7 +51,7 @@ class Device
                 FROM equipement as e, invoices as i
                 WHERE i.id=e.invoice_id
                 $queryRow
-                GROUP BY e.sku
+                GROUP BY e.id
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();

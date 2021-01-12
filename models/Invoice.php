@@ -167,7 +167,7 @@ class Invoice
                 WHERE i.contractor_id=c.id
                 $queryRow
                 $dateFiltr
-                GROUP BY i.invoice_number
+                GROUP BY i.id
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();
