@@ -39,7 +39,7 @@ class Invoice
         $this->conn->query("SELECT id FROM invoices WHERE invoice_number=:invoice_number");
         $this->conn->bindValue("invoice_number", $dataPost['invoiceNumber']);
         $invoiceId = $this->conn->single();
-        dump($invoiceId);
+        dump($invoiceId->id);
 
         //Dodanie licencji do bazy oraz przypisanie konkretnych licencji do faktury
         $counter=(int)$dataPost['licencesCount'];
@@ -65,6 +65,36 @@ class Invoice
             }
         }
 
+        //Dodanie sprzędu do bazy oraz przypisanie konkretnego sprzętu do faktury
+        $counter=(int)$dataPost['equipementCount'];
+        for($i=1; $i<=$counter; $i++){
+            if (isset($dataPost['equipementSku-'.$i])){
+                $this->conn->query(
+                    "INSERT INTO 
+                         `equipement`(`sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id`) 
+                         VALUES (:sku,:name,:description,:serialNumber,:buyDate,:warranty,:priceNetto,:vat,:priceBrutto,:owner,:invoiceId)");
+                $this->conn->bindValue('sku', $dataPost['equipementSku-'.$i]);
+                $this->conn->bindValue("name", $dataPost['equipementName-'.$i]);
+                $this->conn->bindValue("serialNumber", $dataPost['equipementSerial-'.$i]);
+                $this->conn->bindValue("description", $dataPost['equipementDescription-'.$i]);
+                $this->conn->bindValue("buyDate", $dataPost['equipementBuyDate-'.$i]);
+                $this->conn->bindValue("warranty", $dataPost['equipementWarrantyDate-'.$i]);
+                $this->conn->bindValue("priceNetto", $dataPost['equipementNetto-'.$i]);
+                $this->conn->bindValue("vat", $dataPost['equipementVat-'.$i]);
+                $this->conn->bindValue("priceBrutto", $dataPost['equipementBrutto-'.$i]);
+                $this->conn->bindValue("owner", $dataPost['equipementWhoUses-'.$i]);
+                $this->conn->bindValue("invoiceId", $invoiceId->id);
+                $this->conn->execute();
+            }
+        }
+
+        if (isset($_FILES['file']['name'])){
+            $dirpath = $this->getOrCreateDirectory($invoiceId->id);
+            $dir = "media/".$dirpath.'/'.$_FILES['file']['name'];
+            if (move_uploaded_file( $_FILES['file']['tmp_name'], $dir)){
+                $this->addInvoiceDocument($invoiceId->id, $_FILES['file']['name'], $_POST['description']);
+            }
+        }
     }
 
     public function listInvoice(): array

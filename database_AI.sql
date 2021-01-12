@@ -94,6 +94,7 @@ CREATE TABLE `equipement` (
   `warranty_to` date DEFAULT NULL,
   `price_netto` decimal(10,2) NOT NULL,
   `vat` tinyint(4) NOT NULL DEFAULT 0,
+  `price_brutto` decimal(10,2) NOT NULL,
   `who_uses` varchar(128) DEFAULT NULL,
   `invoice_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
