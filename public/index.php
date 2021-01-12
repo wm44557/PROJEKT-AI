@@ -7,11 +7,14 @@ require_once("../config/config.php");
 require_once("../utility/debug.php");
 
 
+
 use app\utility\Router;
 use app\controllers\loginController;
 use app\controllers\adminController;
 use app\controllers\userController;
+use app\controllers\invoices\deviceController;
 use app\controllers\invoices\invoiceController;
+use app\controllers\invoices\licenceController;
 use app\controllers\invoices\statisticsController;
 
 $router = new Router();
@@ -37,6 +40,8 @@ $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->get('/user/show-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/user/list-licence', [licenceController::class, 'listLicence']);
+$router->get('/user/list-device', [deviceController::class, 'listDevice']);
 $router->get('/user/stats', [statisticsController::class, 'showStats']);
 $router->post('/user/addfile', [invoiceController::class, 'addFile']);
 $router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);

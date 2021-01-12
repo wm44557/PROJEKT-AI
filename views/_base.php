@@ -27,6 +27,7 @@
                         <i class="material-icons">library_add</i>
                         <p>Dodaj fakturę</p>
                     </li>
+                </a>
 
                 <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-invoice">
                     <li class="nav-menu__item <?php echo $page=='list-invoice' ?  "active" : "" ?>">
@@ -34,14 +35,20 @@
                         <p>Faktury</p>
                     </li>
                 </a>
+
+                <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-licence">
                 <li class="nav-menu__item">
                     <i class="material-icons">assignment</i>
                     <p>Licencje</p>
                 </li>
+                </a>
+
+                <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-device">
                 <li class="nav-menu__item">
                     <i class="material-icons">devices</i>
                     <p>Sprzęty</p>
                 </li>
+                </a>
                 <li class="nav-menu__item">
                     <i class="material-icons">settings</i>
                     <p>Ustawienia użytkownika</p>

@@ -1,19 +1,9 @@
 <?php
-
+declare(strict_types=1);
 
 namespace app\models;
 
 use app\utility\Database;
-
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
 
 class Invoice
 {
@@ -209,7 +199,7 @@ class Invoice
         $res = $this->conn->single();
         if (!$res->dirpath){
             do{
-                $dirpath = generateRandomString();
+                $dirpath = $this->generateRandomString();
             } while(!mkdir('./media/'.$dirpath));
             $this->conn->query("UPDATE invoices SET dirpath=:dirpath WHERE id=:invoiceId");
             $this->conn->bindValue("dirpath", $dirpath);
@@ -220,6 +210,17 @@ class Invoice
             return $res->dirpath;
         }
     }
+
+    private function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
 }
 
 
