@@ -23,8 +23,8 @@ class Licence
 
         $this->conn->query("
             SELECT COUNT(*) as 'countRecords' 
-            FROM invoices as i 
-            WHERE i.invoice_number 
+            FROM licences as l
+            WHERE l.sku 
             LIKE '%$searchText%'"
         );
 
@@ -34,23 +34,24 @@ class Licence
 
 
         //Wyszukanie po wybraniu jednej z opcji
-        $searchSelect = $_GET['searchSelect'] ?? 'invoice_number';
+        $searchSelect = $_GET['searchSelect'] ?? 'sku';
+        dump($searchSelect);
         switch ($searchSelect) {
-            case "id":
-                $queryRow = "AND i.id LIKE '%$searchText%'";
+            case "serial_number":
+                $queryRow = "WHERE serial_number LIKE '%$searchText%'";
                 break;
-            case "name":
-                $queryRow = "AND c.name LIKE '%$searchText%'";
-                break;
+            default:
+                $queryRow = "WHERE sku LIKE '%$searchText%'";
+
         }
 
-        //Pobranie z bazy wszystkich faktur
+
+        //Pobranie z bazy wszystkich licencji
         $this->conn->query(
-            "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.sum_brutto
-                FROM invoices AS i, contractors AS c
-                WHERE i.contractor_id=c.id
+            "SELECT sku, name, description, serial_number, buy_date, warranty_to, valid_to, price_netto, who_uses
+                FROM licences
                 $queryRow
-                GROUP BY i.invoice_number
+                GROUP BY sku
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();

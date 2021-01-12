@@ -60,7 +60,6 @@
 
 <h5>Paginacja <br></h5>
 <?php
-
 if($_GET) {
     $search = $_GET['search'] ?? "";
     $since=$_GET['since_date'] ?? "";
