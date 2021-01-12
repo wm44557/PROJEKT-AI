@@ -17,7 +17,7 @@ function generateRandomString($length = 10) {
 
 class Invoice
 {
-    public function addInvoice($dataPost)
+    public function addInvoice($dataPost): void
     {
         $this->conn = new Database();
 
@@ -77,7 +77,7 @@ class Invoice
 
     }
 
-    public function listInvoice()
+    public function listInvoice(): array
     {
         $this->conn = new Database();
         //dump($_GET);
@@ -151,7 +151,7 @@ class Invoice
         return $records;
     }
 
-    public function showInvoice($invoiceId)
+    public function showInvoice($invoiceId): array
     {
         $this->conn = new Database();
         $this->conn->query("
@@ -173,7 +173,8 @@ class Invoice
         return $invoiceData;
     }
 
-    public function getInvoiceDocuments($invoiceId){
+    public function getInvoiceDocuments($invoiceId):array
+    {
         $this->conn = new Database();
         $this->conn->query("SELECT d.id, d.name, d.added_at, d.description FROM documents d WHERE invoice_id=:invoiceId");
         $this->conn->bindValue("invoiceId", $invoiceId);
@@ -181,7 +182,8 @@ class Invoice
         return $res;
     }
 
-    public function addInvoiceDocument($invoiceId, $documentName, $description){
+    public function addInvoiceDocument($invoiceId, $documentName, $description):void
+    {
         $this->conn = new Database();
         $this->conn->query('INSERT INTO documents(name, description, invoice_id) 
                                 VALUES (:name, :description, :invoiceId)');
@@ -191,14 +193,16 @@ class Invoice
         $this->conn->execute();
     }
 
-    public function deleteInvoiceDocument($documentId){
+    public function deleteInvoiceDocument($documentId):void
+    {
         $this->conn = new Database();
         $this->conn->query('DELETE FROM documents WHERE id=:documentId');
         $this->conn->bindValue("documentId", $documentId);
         $this->conn->execute();
     }
 
-    public function getOrCreateDirectory($invoiceId){
+    public function getOrCreateDirectory($invoiceId):string
+    {
         $this->conn = new Database();
         $this->conn->query("SELECT dirpath FROM invoices WHERE id=:invoiceId");
         $this->conn->bindValue("invoiceId", $invoiceId);

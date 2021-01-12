@@ -5,6 +5,10 @@
 <a href="<?php echo STARTING_URL ?>/user/list-invoice">
     <button>Wyswietl faktury</button>
 </a>
+<br>
+<?php  //include STATIC_COMPONENT.'\pages\components\statsList.php'; ?>
+
+
 
 
 
