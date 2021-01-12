@@ -2,27 +2,23 @@
 <form action="" method="GET">
     <div>
         <label for="searchSelect">Wyszukaj po:</label>
-        <select id="cars" name="searchSelect" onchange="changeSelector()">
+        <select name="searchSelect" onchange="changeSelector()">
             <option value="id">Identyfikatorze własnym</option>
             <option value="invoice_number">Numerze faktury</option>
             <option value="vat_id">VAT ID kontrahenta</option>
             <option value="name">Nazwie kontrahenta</option>
         </select><br>
-        Wyszukaj: <input type="text" class="form-input" name="search" value="<?php echo $_GET['search'] ?? ''?>"  placeholder="Invoice number.."/><br>
+        Wyszukaj: <input type="text" class="form-input" name="search" value="<?php echo $_GET['search'] ?? ''?>"/><br>
         <br>Przedział czasowy:<br>
 
 
         <input type="date" name="since_date" value="<?php echo $_GET['since_date'] ?>"/>
         <input type="date" name="to_date" value="<?php echo $_GET['to_date'] ?>"/>
-
-
         <br><br>
-
 
     </div>
     <input type="radio" name="MyRadio" value="First" checked>Kupna<br>
     <input type="radio" name="MyRadio" value="Second">Sprzedaży
-
 
     <input type="submit" value="Szukaj.." name="Result">
 </form>
@@ -62,12 +58,13 @@
 <?php
 if($_GET) {
     $search = $_GET['search'] ?? "";
+    $searchSelect = $_GET['searchSelect'] ?? "";
     $since=$_GET['since_date'] ?? "";
     $to=$_GET['to_date'] ?? "";
 }
 
 for ($i = 1; $i <= $results['paginationInfo']; $i++) {
-    echo " <a href='?page=" . $i . "&search=".$search."&since_date=".$since."&to_date=".$to."'>" . $i . "</a>";
+    echo " <a href='?page=" . $i . "&searchSelect=".$searchSelect. "&search=".$search."&since_date=".$since."&to_date=".$to."'>" . $i . "</a>";
 }
 ?>
 
