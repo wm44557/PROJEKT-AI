@@ -10,12 +10,14 @@ use app\utility\Permissions;
 
 class statisticsController
 {
-    public function showStats($router): array
+    public function showStats($router)
     {
         $stats = new Statistics();
         $results['countRecords']=$stats->countRecords();
-        $results['sumBruttoInv']=$stats->sumInv('sum_brutto');
-        $results['sumNettoInv']=$stats->sumInv('sum_netto');
+        $results['sumCosts']=$stats->sumInv('sum_brutto','buy');
+        $results['sumProceeds']=$stats->sumInv('sum_brutto','sale');
+
+        $results['monthlyBiling']=$stats->monthlyBilling();
         $router->render("pages/user/panel", [
             'results' => $results]);
     }
