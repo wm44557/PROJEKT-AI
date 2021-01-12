@@ -194,6 +194,14 @@ class Invoice
             ");
         $this->conn->bindValue("invoiceId", $invoiceId);
         $invoiceData['licenceData'] = $this->conn->resultSet();
+
+        $this->conn->query("
+            SELECT `id`, `sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id` 
+            FROM `equipement` 
+            WHERE invoice_id=:invoiceId
+            ");
+        $this->conn->bindValue("invoiceId", $invoiceId);
+        $invoiceData['equipementData'] = $this->conn->resultSet();
         return $invoiceData;
     }
 

@@ -2,7 +2,7 @@
 
 <a class="toright" href="<?php echo STARTING_URL . '/' . $_SESSION['user_role']?>"><button class="button secondary small back">Wróć</button></a>
 <br><br>
-<form class="form-box" method="post" enctype="multipart/form-data">
+<form class="form-box box" method="post" enctype="multipart/form-data">
     <div class="form-info">
         <h2>Dane podstawowe:</h2>
         <p>Podstawowe dane dotyczące faktury.</p>

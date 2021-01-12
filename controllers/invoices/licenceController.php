@@ -13,7 +13,7 @@ class licenceController
         $licence = new Licence();
         $results = $licence->list();
         $router->render("pages/components/licenceList", [
-            'page' => 'list-licence',
+            'page_name' => 'list-licence',
             'results' => $results]);
     }
 

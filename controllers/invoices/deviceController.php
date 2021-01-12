@@ -13,7 +13,7 @@ class deviceController
         $device = new Device();
         $results = $device->list();
         $router->render("pages/components/deviceList", [
-            'page' => 'list-device',
+            'page_name' => 'list-device',
             'results' => $results]);
     }
 

@@ -23,28 +23,27 @@
             </div>
             <ul class="nav-menu">
                 <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/add-invoice">
-                    <li class="nav-menu__item <?php echo $page=='add-invoice' ?  "active" : "" ?>">
+                    <li class="nav-menu__item <?php echo $page_name=='add-invoice' ?  "active" : "" ?>">
                         <i class="material-icons">library_add</i>
                         <p>Dodaj fakturę</p>
                     </li>
                 </a>
-
                 <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-invoice">
-                    <li class="nav-menu__item <?php echo $page=='list-invoice' ?  "active" : "" ?>">
+                    <li class="nav-menu__item <?php echo $page_name=='list-invoice' ?  "active" : "" ?>">
                         <i class="material-icons">history_edu</i>
                         <p>Faktury</p>
                     </li>
                 </a>
 
                 <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-licence">
-                <li class="nav-menu__item">
+                <li class="nav-menu__item <?php echo $page_name=='list-licence' ?  "active" : "" ?>">
                     <i class="material-icons">assignment</i>
                     <p>Licencje</p>
                 </li>
                 </a>
 
                 <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-device">
-                <li class="nav-menu__item">
+                <li class="nav-menu__item <?php echo $page_name=='list-device' ?  "active" : "" ?>">
                     <i class="material-icons">devices</i>
                     <p>Sprzęty</p>
                 </li>

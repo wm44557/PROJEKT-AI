@@ -28,7 +28,7 @@ class adminController
     {
         Permissions::check("admin");
         $router->render("pages/components/invoiceForm", [
-            'page' => 'add-invoice'
+            'page_name' => 'add-invoice'
         ]);
     }
 
