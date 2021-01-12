@@ -54,6 +54,10 @@ h1 {
     font-size: .8rem;
 }
 
+.bold{
+    font-weight: 700;
+}
+
 
 /* Formularze */
 .input[type="text"], .input[type="password"]{
@@ -137,6 +141,9 @@ h1 {
 }
 .toleft{
     align-self: flex-start;
+}
+.flex{
+    display: flex;
 }
 
 /*
@@ -228,6 +235,9 @@ Pages layout
     align-items: center;
 }
 
+.box{
+    max-width: 1000px;
+}
 /*
 Menu
 */
@@ -316,7 +326,6 @@ Formularze
 .form-box{
     display: grid;
     grid-template-columns: 250px 1fr;
-    max-width: 1000px;
 }
 .form-info{
     padding: 0.5rem 1rem 0.5rem 0;
@@ -328,12 +337,15 @@ Formularze
     flex-direction: column;
     padding-bottom: 1rem;
 }
-.form-input-label input, .form-input-label select{
+.form-input-label input, .form-input-label select, .form-input{
     width: 300px;
     padding: 0.3rem 0.6rem;
     background-color: rgba(255,255,255,.5);
     border: 1px solid var(--font-color-light);
     border-radius: 5px;
+}
+.form-input{
+    width: 100%;
 }
 .form-input-label input::placeholder{
     color: var(--font-color-dark);
@@ -386,4 +398,28 @@ table.form-table input{
     background: none;
     border: none;
     text-align: center;
+}
+table.form-table.spacing td{
+    padding: .2rem .3rem;
+}
+
+/*
+Searchbar
+*/
+.search-bar{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--font-color-light);
+}
+
+/*
+Pagination
+*/
+.pagination-box{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
 }
