@@ -118,7 +118,14 @@
             <th>Nazwa pliku</th>
             <th>Dodano</th>
             <th>Opis</th>
-            <th></th>
+            <?php if (isset($_SESSION["user_role"]))
+            if ($_SESSION["user_role"] != "auditor"):
+
+            ?>
+            <th>Usuń plik</th>
+            <?php else: ?>
+
+            <?php endif; ?>
             </thead>
             <tbody>
             <?php foreach ($files as $file): ?>
@@ -131,7 +138,14 @@
                             <input type="hidden" name="fileId" value="<?= $file->id?>">
                             <input type="hidden" name="fileName" value="<?= $file->name; ?>">
                             <input type="hidden" name="invoiceId" value="<?= $invoiceId; ?>">
+                            <?php if (isset($_SESSION["user_role"]))
+                            if ($_SESSION["user_role"] != "auditor"):
+
+                            ?>
                             <input type="submit" class="button secondary small" value="Usun">
+                            <?php else: ?>
+
+                            <?php endif; ?>
                         </form>
                     </td>
                 </tr>
@@ -139,6 +153,10 @@
             </tbody>
         </table>
         <br><br>
+        <?php if (isset($_SESSION["user_role"]))
+        if ($_SESSION["user_role"] != "auditor"):
+
+        ?>
         <form action="addfile" method="post" enctype="multipart/form-data" class="small-form">
             <input type="file" name="file">
             <label class="form-input-label input">
@@ -148,6 +166,9 @@
             <input type="hidden" name="invoiceId" value="<?php echo $invoiceId; ?>">
             <input type="submit" class="button primary small" value="Dodaj plik" name="addfile">
         </form>
+        <?php else: ?>
+
+        <?php endif; ?>
     </div>
 
     <div class="info">

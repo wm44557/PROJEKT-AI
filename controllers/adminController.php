@@ -26,7 +26,7 @@ class adminController
 
     public function addInvoice($router)
     {
-        Permissions::check("admin");
+        Permissions::check(["admin"]);
         $router->render("pages/components/invoiceForm", [
             'page_name' => 'add-invoice'
         ]);

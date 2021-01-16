@@ -12,7 +12,7 @@
 <div class="background">
     <div class="container">
         <?php if (isset($_SESSION["user_role"]))
-            if ($_SESSION["user_role"] == "user" || $_SESSION["user_role"] == "admin"):
+            if ($_SESSION["user_role"] == "user" || $_SESSION["user_role"] == "admin" || $_SESSION["user_role"] == "auditor"):
 
          ?>
         <nav class="nav">
@@ -22,12 +22,17 @@
                 </a>
             </div>
             <ul class="nav-menu">
+                <?php if (isset($_SESSION["user_role"]))
+                if ($_SESSION["user_role"] == "user" || $_SESSION["user_role"] == "admin"):
+
+                ?>
                 <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/add-invoice">
                     <li class="nav-menu__item <?php echo $page_name=='add-invoice' ?  "active" : "" ?>">
                         <i class="material-icons">library_add</i>
                         <p>Dodaj fakturę</p>
                     </li>
                 </a>
+                <?php endif ?>
                 <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/list-invoice">
                     <li class="nav-menu__item <?php echo $page_name=='list-invoice' ?  "active" : "" ?>">
                         <i class="material-icons">history_edu</i>

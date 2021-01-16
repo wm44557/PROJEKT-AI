@@ -12,10 +12,5 @@ use app\utility\Permissions;
 class auditorController
 {
 
-    public function addInvoice($router)
-    {
-        //Permissions::check("user");
-        $router->render("pages/components/invoiceForm");
-    }
 
 }

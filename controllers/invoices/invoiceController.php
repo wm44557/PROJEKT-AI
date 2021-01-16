@@ -23,6 +23,7 @@ class invoiceController
 
     public function listInvoice($router)
     {
+        Permissions::check(['admin','user','auditor']);
         $invoice = new Invoice();
         $results = $invoice->listInvoice();
         $router->render("pages/components/invoiceList", [
