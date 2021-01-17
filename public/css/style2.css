@@ -564,3 +564,16 @@ Stats
     max-width: 400px;
     margin-top: 10px;
 }
+
+.inputEdit {
+    width: 300px;
+    padding: 0.3rem 0.6rem;
+    background-color: rgba(255, 255, 255, .5);
+    border: 1px solid var(--font-color-light);
+    border-radius: 5px;
+}
+
+.boxEdit {
+    width: 50%;
+    max-width: 1000px;
+}
