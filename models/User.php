@@ -42,7 +42,7 @@ class User
     {
         $this->conn = new Database();
         $this->conn->query("SELECT * FROM users");
-        $result = $this->conn->resultSet();
+        $result = $this->conn->resultAll();
         return $result;
     }
 
