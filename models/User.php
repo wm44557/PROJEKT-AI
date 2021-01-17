@@ -26,6 +26,18 @@ class User
         $result = $this->conn->single();
         return $result;
     }
+
+    public function getUserLogin($login)
+    {
+        $this->conn = new Database();
+        $this->conn->query('SELECT * FROM users WHERE login=:login;');
+        $this->conn->bindValue("login", $login);
+        $result = $this->conn->single();
+        return $result;
+    }
+
+    
+
     public function editUser($dataEdited)
     {
         $this->conn = new Database();

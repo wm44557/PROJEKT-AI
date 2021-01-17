@@ -55,13 +55,21 @@ class adminController
 
     public function userEdited($router)
     {
-        dump($_POST);
-        $user = new User();
-
-        $user->editUser($_POST);
         Permissions::check(["admin"]);
-        $router->render("pages/admin/userEdited", [
-            'page_name' => 'userEdited'
+        $user = new User();
+        if (!$user->getUserLogin($_POST['login'])) {
+            $user->editUser($_POST);
+            $editInfo = "Udało się edytować dane użytkownika";
+        } else {
+            $editInfo = "Użytkownik o takim loginie już istnieje!";
+        }
+        $results = $user->listUsers();
+
+
+        $router->render("pages/admin/usersList", [
+            'page_name' => 'usersList',
+            'editInfo' => $editInfo,
+            $results
         ]);
     }
 }

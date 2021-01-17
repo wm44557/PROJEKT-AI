@@ -1,6 +1,3 @@
-<h1><?php echo dump($params[0]) ?></h1>
-<h1><?php echo dump($_POST) ?></h1>
-
 <h1>EDIT USER</h1>
 <form action="<?php echo STARTING_URL ?>/admin/users-list/user-edited" class="box" method="post">
     <label for="id">ID: </label>

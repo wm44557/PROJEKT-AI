@@ -1,5 +1,9 @@
-<h1>Users List</h1>
+<?php if (isset($params['editInfo'])) : ?>
 
+    <div><?php echo $params['editInfo'] ?></h1>
+<?php endif; ?>
+
+<h1>Users List</h1>
 <div class="stats-box">
     <table class="form-table align">
         <thead>
