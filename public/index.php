@@ -32,8 +32,10 @@ $router->post("/admin/register", [adminController::class, 'registerUser']);
 $router->get("/admin/users-list", [adminController::class, 'usersList']);
 $router->post("/admin/users-list", [adminController::class, 'usersList']);
 
-$router->get("/admin/users-list/user-edit", [adminController::class, 'userEdit']);
-$router->post("/admin/users-list/user-edit", [adminController::class, 'userEdit']);
+$router->get("/admin/users-list/user-edit", [adminController::class, 'usersList']);
+$router->post("/admin/users-list/user-edit", [adminController::class, 'usersList']);
+
+$router->get('/admin', [statisticsController::class, 'showStatsAdmin']);
 
 $router->get('/admin/add-invoice', [adminController::class, 'addInvoice']);
 $router->post('/admin/add-invoice', [invoiceController::class, 'addInvoice']);
@@ -57,6 +59,7 @@ $router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);
 
 
 // Auditor urls
+$router->get('/auditor', [statisticsController::class, 'showStats']);
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/auditor/list-invoice', [invoiceController::class, 'showInvoice']);
 $router->get('/auditor/show-invoice', [invoiceController::class, 'showInvoice']);

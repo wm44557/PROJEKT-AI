@@ -13,12 +13,25 @@ class statisticsController
     public function showStats($router)
     {
         $stats = new Statistics();
-        $results['countRecords']=$stats->countRecords();
-        $results['sumCosts']=$stats->sumInv('sum_brutto','buy');
-        $results['sumProceeds']=$stats->sumInv('sum_brutto','sale');
+        $results['countRecords'] = $stats->countRecords();
+        $results['sumCosts'] = $stats->sumInv('sum_brutto', 'buy');
+        $results['sumProceeds'] = $stats->sumInv('sum_brutto', 'sale');
 
-        $results['monthlyBiling']=$stats->monthlyBilling();
+        $results['monthlyBiling'] = $stats->monthlyBilling();
         $router->render("pages/user/panel", [
-            'results' => $results]);
+            'results' => $results
+        ]);
+    }
+    public function showStatsAdmin($router)
+    {
+        $stats = new Statistics();
+        $results['countRecords'] = $stats->countRecords();
+        $results['sumCosts'] = $stats->sumInv('sum_brutto', 'buy');
+        $results['sumProceeds'] = $stats->sumInv('sum_brutto', 'sale');
+
+        $results['monthlyBiling'] = $stats->monthlyBilling();
+        $router->render("pages/admin/panel", [
+            'results' => $results
+        ]);
     }
 }

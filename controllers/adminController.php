@@ -43,12 +43,13 @@ class adminController
     }
     public function userEdit($router)
     {
-        $resuls =  $_POST;
+        $user = new User();
+        $results = $user->getUser($_POST["userID"]);
 
         Permissions::check(["admin"]);
         $router->render("pages/admin/userEdit", [
             'page_name' => 'userEdit',
-            $resuls
+            $results
         ]);
     }
 }

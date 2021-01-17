@@ -1,1 +1,1 @@
-<h1><?php echo dump($params) ?></h1>
+<h1><?php echo dump($params[0]) ?></h1>

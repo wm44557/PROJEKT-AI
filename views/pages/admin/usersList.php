@@ -18,7 +18,7 @@
                     <td><?php echo $usr['email'] ?></td>
                     <td>
                         <form action="<?php echo STARTING_URL ?>/admin/users-list/user-edit" method="post">
-                            <input name="userID" type="text" value=<?php echo (int) $usr['id'] ?>>
+                            <input name="userID" type="hidden" value=<?php echo (int) $usr['id'] ?>>
                             <input class="button secondary small" type="submit" value="Edytuj">
                         </form>
                     </td>
