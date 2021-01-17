@@ -100,7 +100,7 @@ class Invoice
     public function listInvoice(): array
     {
         $this->conn = new Database();
-        //dump($_GET);
+        dump($_GET);
         //$LIMIT słuzy do ustawiania ilosci rekordów na jednej stronie
         $limit = 5;
         if (isset($_GET["page"])) {
@@ -167,7 +167,7 @@ class Invoice
                 WHERE i.contractor_id=c.id
                 $queryRow
                 $dateFiltr
-                GROUP BY i.invoice_number
+                GROUP BY i.id
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();

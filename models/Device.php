@@ -36,7 +36,7 @@ class Device
         $this->conn->query("
             SELECT COUNT($searchRowInCount) as 'countRecords' 
             FROM equipement
-            WHERE $searchRowInCount 
+            WHERE $searchRowInCount          
             LIKE '%$searchText%'"
         );
 
@@ -50,8 +50,8 @@ class Device
             "SELECT e.sku, e.name, e.description, e.serial_number, e.buy_date, e.warranty_to, e.price_netto, e.who_uses, i.invoice_number
                 FROM equipement as e, invoices as i
                 WHERE i.id=e.invoice_id
-                $queryRow
-                GROUP BY e.sku
+                $queryRowg
+                GROUP BY e.id
                 LIMIT $startFrom, $limit"
         );
         $records['elements'] = $this->conn->resultSet();
