@@ -31,4 +31,14 @@ class adminController
             'page_name' => 'add-invoice'
         ]);
     }
+    public function usersList($router)
+    {
+        Permissions::check(["admin"]);
+        $user = new User();
+        $results = $user->listUsers();
+        $router->render("pages/admin/usersList", [
+            'page_name' => 'usersList',
+            $results
+        ]);
+    }
 }

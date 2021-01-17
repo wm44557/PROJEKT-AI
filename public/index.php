@@ -30,7 +30,7 @@ $router->get("/admin/register", [adminController::class, 'registerUser']);
 $router->post("/admin/register", [adminController::class, 'registerUser']);
 
 $router->get("/admin/users-list", [adminController::class, 'usersList']);
-$router->post("/admin/users", [adminController::class, 'usersList']);
+$router->post("/admin/users-list", [adminController::class, 'usersList']);
 
 
 $router->get('/admin/add-invoice', [adminController::class, 'addInvoice']);
