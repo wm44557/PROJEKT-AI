@@ -55,10 +55,12 @@
                                 <p>Sprzęty</p>
                             </li>
                         </a>
-                        <li class="nav-menu__item">
-                            <i class="material-icons">settings</i>
-                            <p>Ustawienia użytkownika</p>
-                        </li>
+                        <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/settings">
+                            <li class="nav-menu__item">
+                                <i class="material-icons">settings</i>
+                                <p>Ustawienia użytkownika</p>
+                            </li>
+                        </a>
                     </ul>
                     <form action="<?php echo STARTING_URL ?>/logout" method="post"><input class="button primary" type="submit" value="Wyloguj"></form>
                 </nav>

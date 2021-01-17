@@ -29,6 +29,10 @@ $router->post('/logout', [loginController::class, 'logout']);
 $router->get("/admin/register", [adminController::class, 'registerUser']);
 $router->post("/admin/register", [adminController::class, 'registerUser']);
 
+$router->get("/admin/settings", [adminController::class, 'settingsUser']);
+$router->post("/admin/settings", [adminController::class, 'settingsUser']);
+
+
 $router->get("/admin/users-list", [adminController::class, 'usersList']);
 $router->post("/admin/users-list", [adminController::class, 'usersList']);
 
@@ -55,6 +59,11 @@ $router->get('/admin/list-device', [deviceController::class, 'listDevice']);
 //$router->get('/user/edit', [userController::class, 'user_edit']);
 //$router->post('/user/edit', [userController::class, 'user_edit']);
 $router->get('/user', [statisticsController::class, 'showStats']);
+
+$router->get("/user/settings", [userController::class, 'settings']);
+$router->post("/user/settings", [userController::class, 'settings']);
+
+
 $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/user/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/user/list-invoice', [invoiceController::class, 'listInvoice']);
@@ -68,6 +77,10 @@ $router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);
 
 // Auditor urls
 $router->get('/auditor', [statisticsController::class, 'showStats']);
+
+$router->get("/auditor/settings", [userController::class, 'settings']);
+$router->post("/auditor/settings", [userController::class, 'settings']);
+
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/auditor/list-invoice', [invoiceController::class, 'showInvoice']);
 $router->get('/auditor/show-invoice', [invoiceController::class, 'showInvoice']);
