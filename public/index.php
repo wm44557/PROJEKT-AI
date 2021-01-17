@@ -37,6 +37,7 @@ $router->post("/admin/users-list/user-edit", [adminController::class, 'usersList
 
 $router->get('/admin', [statisticsController::class, 'showStatsAdmin']);
 
+$router->get('/admin', [statisticsController::class, 'showStats']);
 $router->get('/admin/add-invoice', [adminController::class, 'addInvoice']);
 $router->post('/admin/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/admin/list-invoice', [invoiceController::class, 'listInvoice']);

@@ -61,6 +61,7 @@ class loginController
     public function auditor($router)
     {
         Permissions::check("auditor");
-        $router->render('pages/user/panel', []);
+        $router->render('pages/user/panel', [
+        ]);
     }
 }
