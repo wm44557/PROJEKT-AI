@@ -50,7 +50,7 @@ class loginController
     public function admin($router)
     {
         Permissions::check("admin");
-        $router->render('pages/admin/panel', [
+        $router->render('pages/user/panel', [
         ]);
     }
 
@@ -64,7 +64,7 @@ class loginController
     public function auditor($router)
     {
         Permissions::check("auditor");
-        $router->render('pages/auditor/panel', [
+        $router->render('pages/user/panel', [
         ]);
     }
 
