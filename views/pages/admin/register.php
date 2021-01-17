@@ -1,4 +1,4 @@
-<h1>Register User</h1>
+<h1>Zarejstruj Użytkownika</h1>
 <form class="boxEdit" method="post">
     <input class="form-input" type="text" name="email" placeholder="Email.."><br><br>
     <input class="form-input" type="text" name="login" placeholder="Login.."><br><br>
@@ -10,7 +10,7 @@
         <option value="auditor">
     </datalist>
     <br><br>
-    <input class="button secondary small" class="submit" type="submit" value="Send">
+    <input class="button secondary small" class="submit" type="submit" value="Wyślij">
 
 </form>
 <br>

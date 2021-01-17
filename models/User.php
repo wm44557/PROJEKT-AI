@@ -50,6 +50,13 @@ class User
         $this->conn->execute();
     }
 
+    public function deleteUser($dataEdited)
+    {
+        $this->conn = new Database();
+        $this->conn->query('DELETE FROM users WHERE id=:id');
+        $this->conn->bindValue("id", $dataEdited['id']);
+        $this->conn->execute();
+    }
     public function registerUser($dataRegister)
     {
         $this->conn = new Database();

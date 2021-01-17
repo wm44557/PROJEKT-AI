@@ -48,6 +48,7 @@ class adminController
         $results = $user->getUser($_POST["userID"]);
 
         $_SESSION['editedLogin'] = $results->login;
+        $_SESSION['editedUserId'] = $results->id;
 
         $router->render("pages/admin/userEdit", [
             'page_name' => 'userEdit',
@@ -58,6 +59,7 @@ class adminController
     public function userEdited($router)
     {
         Permissions::check(["admin"]);
+
         $user = new User();
         if (!$user->getUserLogin($_POST['login']) || $_POST['login'] == $_SESSION['editedLogin']) {
             $user->editUser($_POST);
@@ -68,6 +70,22 @@ class adminController
         $results = $user->listUsers();
 
 
+        $router->render("pages/admin/usersList", [
+            'page_name' => 'usersList',
+            'editInfo' => $editInfo,
+            $results
+        ]);
+    }
+
+    public function userDelete($router)
+    {
+        Permissions::check(["admin"]);
+        $user = new User();
+
+        $user->deleteUser($_SESSION['editedUserId']);
+        $editInfo = "Użytkownik został usunięty";
+
+        $results = $user->listUsers();
         $router->render("pages/admin/usersList", [
             'page_name' => 'usersList',
             'editInfo' => $editInfo,

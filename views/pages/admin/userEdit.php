@@ -1,4 +1,6 @@
 <h1>Edycja Użytkownika</h1>
+<a href="<?php echo STARTING_URL ?>/admin/user-delete"><button class="button warning">Usuń użytkownika z bazy</button></a>
+
 <form action="<?php echo STARTING_URL ?>/admin/users-list/user-edited" class="boxEdit" method="post">
     <label for="id">ID: </label>
     <input class="form-input" type="text" name="id" value="<?php echo  $params[0]->id ?>" readonly><br><br>
@@ -23,7 +25,7 @@
         <option value="auditor">
     </datalist>
     <br><br>
-    <input class="button secondary small" class="submit" type="submit" value="Send">
+    <input class="button secondary small" class="submit" type="submit" value="Wyślij">
 
 </form>
 <br>

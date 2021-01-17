@@ -25,8 +25,10 @@
                         <td>
                             <form action="<?php echo STARTING_URL ?>/admin/users-list/user-edit" method="post">
                                 <input name="userID" type="hidden" value=<?php echo (int) $usr['id'] ?>>
-                                <input class="button secondary small" type="submit" value="Edytuj">
+                                <input class="button secondary small DIB" type="submit" value="Edytuj">
                             </form>
+                            <br>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>
