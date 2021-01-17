@@ -29,10 +29,12 @@ $router->post('/logout', [loginController::class, 'logout']);
 $router->get("/admin/register", [adminController::class, 'registerUser']);
 $router->post("/admin/register", [adminController::class, 'registerUser']);
 
-$router->get('/admin/add-invoice', [adminController::class, 'addInvoice']);
+$router->get('/admin/add-invoice', [userController::class, 'addInvoice']);
 $router->post('/admin/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/admin/list-invoice', [invoiceController::class, 'listInvoice']);
-$router->post('/admin/list-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/admin/show-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/admin/list-licence', [licenceController::class, 'listLicence']);
+$router->get('/admin/list-device', [deviceController::class, 'listDevice']);
 
 //$router->get('/user/edit', [userController::class, 'user_edit']);
 //$router->post('/user/edit', [userController::class, 'user_edit']);
@@ -47,7 +49,13 @@ $router->get('/user/list-device', [deviceController::class, 'listDevice']);
 $router->post('/user/addfile', [invoiceController::class, 'addFile']);
 $router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);
 
+
+// Auditor urls
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/auditor/list-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/auditor/show-invoice', [invoiceController::class, 'showInvoice']);
+$router->get('/auditor/list-licence', [licenceController::class, 'listLicence']);
+$router->get('/auditor/list-device', [deviceController::class, 'listDevice']);
+
 
 $router->resolve();

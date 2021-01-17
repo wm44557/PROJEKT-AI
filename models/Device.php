@@ -50,7 +50,7 @@ class Device
             "SELECT e.sku, e.name, e.description, e.serial_number, e.buy_date, e.warranty_to, e.price_netto, e.who_uses, i.invoice_number
                 FROM equipement as e, invoices as i
                 WHERE i.id=e.invoice_id
-                $queryRowg
+                $queryRow
                 GROUP BY e.id
                 LIMIT $startFrom, $limit"
         );
