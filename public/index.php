@@ -32,8 +32,13 @@ $router->post("/admin/register", [adminController::class, 'registerUser']);
 $router->get("/admin/users-list", [adminController::class, 'usersList']);
 $router->post("/admin/users-list", [adminController::class, 'usersList']);
 
-$router->get("/admin/users-list/user-edit", [adminController::class, 'usersList']);
-$router->post("/admin/users-list/user-edit", [adminController::class, 'usersList']);
+$router->get("/admin/users-list/user-edit", [adminController::class, 'userEdit']);
+$router->post("/admin/users-list/user-edit", [adminController::class, 'userEdit']);
+
+$router->get("/admin/users-list/user-edited", [adminController::class, 'userEdited']);
+$router->post("/admin/users-list/user-edited", [adminController::class, 'userEdited']);
+
+
 
 $router->get('/admin', [statisticsController::class, 'showStatsAdmin']);
 
