@@ -103,13 +103,12 @@ class adminController
         Permissions::check(["admin"]);
         $user = new User();
         $results = $user->getUser($_SESSION["user_id"]);
-        
-        if($_POST){
+
+        if ($_POST) {
             $user->editUser($_POST);
             $settingsInfo = 'Pomyślnie zmieniono dane konta';
         }
-
-
+        $results = $user->getUser($_SESSION["user_id"]);
 
         $router->render("pages/admin/settings", [
             'page_name' => 'settings',
