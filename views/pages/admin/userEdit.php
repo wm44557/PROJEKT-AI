@@ -6,14 +6,18 @@
     <label for="id">ID: </label>
     <input type="text" name="id" value="<?php echo  $params[0]->id ?>" readonly><br><br>
 
-    <label for="id">LOGIN: </label>
+    <label for="login">LOGIN: </label>
     <input type="text" name="login" value="<?php echo  $params[0]->login ?>"><br><br>
 
-    <label for="id">PASSWORD: </label>
-
+    <label for="password">HASŁO: </label>
     <input type="text" name="password" value="<?php echo  $params[0]->password ?>"><br><br>
-    <label for="id">PERMISSIONS: </label>
-    <input list="browsers" name="permission" id="permission" placeholder="<?php echo  $params[0]->user ?>">
+
+    <label for="email">EMAIL: </label>
+    <input type="text" name="email" value="<?php echo  $params[0]->email ?>"><br><br>
+
+
+    <label for="permission">UPRAWNIENIA: </label>
+    <input list="browsers" name="permission" id="permission" placeholder="<?php echo  $params[0]->role ?>" required>
 
 
     <datalist id="browsers">

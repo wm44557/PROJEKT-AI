@@ -26,6 +26,17 @@ class User
         $result = $this->conn->single();
         return $result;
     }
+    public function editUser($dataEdited)
+    {
+        $this->conn = new Database();
+        $this->conn->query("UPDATE users SET login = :login,password = :password,email=:email,role=:permission WHERE `users`. `id`= :id");
+        $this->conn->bindValue("id", $dataEdited['id']);
+        $this->conn->bindValue("login", $dataEdited['login']);
+        $this->conn->bindValue("password", $dataEdited['password']);
+        $this->conn->bindValue("email", $dataEdited['email']);
+        $this->conn->bindValue("permission", $dataEdited['permission']);
+        $this->conn->execute();
+    }
 
     public function registerUser($dataRegister)
     {

@@ -56,6 +56,9 @@ class adminController
     public function userEdited($router)
     {
         dump($_POST);
+        $user = new User();
+
+        $user->editUser($_POST);
         Permissions::check(["admin"]);
         $router->render("pages/admin/userEdited", [
             'page_name' => 'userEdited'
