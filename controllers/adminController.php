@@ -43,10 +43,12 @@ class adminController
     }
     public function userEdit($router)
     {
+        Permissions::check(["admin"]);
         $user = new User();
         $results = $user->getUser($_POST["userID"]);
 
-        Permissions::check(["admin"]);
+        $_SESSION['editedLogin'] = $results->login;
+
         $router->render("pages/admin/userEdit", [
             'page_name' => 'userEdit',
             $results
@@ -57,7 +59,7 @@ class adminController
     {
         Permissions::check(["admin"]);
         $user = new User();
-        if (!$user->getUserLogin($_POST['login'])) {
+        if (!$user->getUserLogin($_POST['login']) || $_POST['login'] == $_SESSION['editedLogin']) {
             $user->editUser($_POST);
             $editInfo = "Udało się edytować dane użytkownika";
         } else {

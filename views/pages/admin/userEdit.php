@@ -1,4 +1,4 @@
-<h1>EDIT USER</h1>
+<h1>Edycja Użytkownika</h1>
 <form action="<?php echo STARTING_URL ?>/admin/users-list/user-edited" class="boxEdit" method="post">
     <label for="id">ID: </label>
     <input class="form-input" type="text" name="id" value="<?php echo  $params[0]->id ?>" readonly><br><br>
@@ -27,4 +27,4 @@
 
 </form>
 <br>
-<a href="<?php echo STARTING_URL ?>"><button class="button secondary small">Wróć</button></a>
+<a href="<?php echo STARTING_URL ?>/admin/users-list"><button class="button secondary small">Wróć</button></a>
