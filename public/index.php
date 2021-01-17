@@ -29,6 +29,10 @@ $router->post('/logout', [loginController::class, 'logout']);
 $router->get("/admin/register", [adminController::class, 'registerUser']);
 $router->post("/admin/register", [adminController::class, 'registerUser']);
 
+$router->get("/admin/users-list", [adminController::class, 'usersList']);
+$router->post("/admin/users", [adminController::class, 'usersList']);
+
+
 $router->get('/admin/add-invoice', [adminController::class, 'addInvoice']);
 $router->post('/admin/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/admin/list-invoice', [invoiceController::class, 'listInvoice']);
