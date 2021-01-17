@@ -29,7 +29,7 @@ $router->post('/logout', [loginController::class, 'logout']);
 $router->get("/admin/register", [adminController::class, 'registerUser']);
 $router->post("/admin/register", [adminController::class, 'registerUser']);
 
-$router->get('/admin/add-invoice', [userController::class, 'addInvoice']);
+$router->get('/admin/add-invoice', [adminController::class, 'addInvoice']);
 $router->post('/admin/add-invoice', [invoiceController::class, 'addInvoice']);
 $router->get('/admin/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->get('/admin/show-invoice', [invoiceController::class, 'showInvoice']);

@@ -14,7 +14,7 @@ class adminController
     public function registerUser($router)
     {
         Permissions::check("admin");
-        if($_POST) {
+        if ($_POST) {
             $dataRegister = $_POST;
             dump($dataRegister);
             $user = new User();
@@ -31,6 +31,4 @@ class adminController
             'page_name' => 'add-invoice'
         ]);
     }
-
-
 }

@@ -1,6 +1,10 @@
+<h1>Admin Panel</h1>
 
-    <h1>Admin Panel</h1>
+<!-- <form action="<?php echo STARTING_URL ?>/admin/register" method="post"><input type="submit" value="Zarejestruj użytkownika"></form><br> -->
+<div class="boxAdmin">
+    <a href="<?php echo STARTING_URL ?>/admin/add-invoice"><button class="button primary">Dodaj fakture</button></a>
+    <a href="<?php echo STARTING_URL ?>/admin/list-invoice"><button class="button primary">Wyswietl faktury</button></a>
+    <a href="<?php echo STARTING_URL ?>/admin/register"><button class="button primary">Zarejestruj użytkownika</button></a>
+    <a href="<?php echo STARTING_URL ?>/admin/users-list"><button class="button primary">Lista użytkowników</button></a>
 
-    <form action="<?php echo STARTING_URL?>/admin/register" method="post"><input type="submit" value="Zarejestruj użytkownika"></form><br>
-    <a href="<?php echo STARTING_URL?>/admin/add-invoice"><button>Dodaj fakture</button></a><br><br>
-    <a href="<?php echo STARTING_URL?>/admin/list-invoice"><button>Wyswietl faktury</button></a>
+</div>
