@@ -1,3 +1,8 @@
+<?php if (isset($params['registerInfo'])) : ?>
+
+    <div><?php echo $params['registerInfo'] ?></div>
+<?php endif; ?>
+
 <h1>Zarejstruj Użytkownika</h1>
 <form class="boxEdit" method="post">
     <input class="form-input" type="text" name="email" placeholder="Email.."><br><br>

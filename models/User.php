@@ -36,7 +36,7 @@ class User
         return $result;
     }
 
-    
+
 
     public function editUser($dataEdited)
     {
@@ -50,11 +50,12 @@ class User
         $this->conn->execute();
     }
 
-    public function deleteUser($dataEdited)
+    public function deleteUser($id)
     {
         $this->conn = new Database();
-        $this->conn->query('DELETE FROM users WHERE id=:id');
-        $this->conn->bindValue("id", $dataEdited['id']);
+     
+        $this->conn->query("DELETE FROM users WHERE `users`. `id`=:id");
+        $this->conn->bindValue("id", $id);
         $this->conn->execute();
     }
     public function registerUser($dataRegister)

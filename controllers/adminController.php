@@ -14,14 +14,22 @@ class adminController
     public function registerUser($router)
     {
         Permissions::check("admin");
-        if ($_POST) {
-            $dataRegister = $_POST;
-            dump($dataRegister);
-            $user = new User();
-            $user->registerUser($dataRegister);
-            Redirect::to("/");
+        $user = new User();
+        if (!$user->getUserLogin($_POST['login'])) {
+            if ($_POST) {
+                $dataRegister = $_POST;
+                $user = new User();
+                $user->registerUser($dataRegister);
+                Redirect::to("/");
+            }
+        } else {
+            $registerInfo = "Użytkownik o takim loginie już istnieje!";
         }
-        $router->render("pages/admin/register");
+
+        $router->render("pages/admin/register",  [
+            'page_name' => 'register',
+            'registerInfo' => $registerInfo
+        ]);
     }
 
     public function addInvoice($router)
@@ -48,7 +56,6 @@ class adminController
         $results = $user->getUser($_POST["userID"]);
 
         $_SESSION['editedLogin'] = $results->login;
-        $_SESSION['editedUserId'] = $results->id;
 
         $router->render("pages/admin/userEdit", [
             'page_name' => 'userEdit',
@@ -77,11 +84,10 @@ class adminController
         ]);
     }
 
-    public function userDelete($router)
+    public function deleteUser($router)
     {
         Permissions::check(["admin"]);
         $user = new User();
-
         $user->deleteUser($_SESSION['editedUserId']);
         $editInfo = "Użytkownik został usunięty";
 
