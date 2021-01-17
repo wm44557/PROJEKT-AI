@@ -41,4 +41,14 @@ class adminController
             $results
         ]);
     }
+    public function userEdit($router)
+    {
+        $resuls =  $_POST;
+
+        Permissions::check(["admin"]);
+        $router->render("pages/admin/userEdit", [
+            'page_name' => 'userEdit',
+            $resuls
+        ]);
+    }
 }

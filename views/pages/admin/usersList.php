@@ -17,10 +17,10 @@
                     <td><?php echo $usr['login'] ?></td>
                     <td><?php echo $usr['email'] ?></td>
                     <td>
-                        <a href="/PROJEKT-AI/admin/users-list/?action=show&id=<?php echo (int) $usr['id'] ?>">
-                            <button class="button secondary small">Edytuj</button></a>
-
-
+                        <form action="<?php echo STARTING_URL ?>/admin/users-list/user-edit" method="post">
+                            <input name="userID" type="text" value=<?php echo (int) $usr['id'] ?>>
+                            <input class="button secondary small" type="submit" value="Edytuj">
+                        </form>
                     </td>
                 </tr>
             <?php endforeach; ?>
