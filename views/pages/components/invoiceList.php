@@ -30,9 +30,9 @@
             <div>
                 <label>
                     Rodzaj faktury:
-                    <select class="form-input" name="type">
-                        <option value="buy">Kupna</option>
-                        <option value="sell">Sprzedaży</option>
+                    <select class="form-input" name="MyRadio">
+                        <option value="First">Kupna</option>
+                        <option value="Second">Sprzedaży</option>
                     </select>
                 </label>
             </div>

@@ -36,7 +36,7 @@ class Device
         $this->conn->query("
             SELECT COUNT($searchRowInCount) as 'countRecords' 
             FROM equipement
-            WHERE $searchRowInCount          
+            WHERE $searchRowInCount 
             LIKE '%$searchText%'"
         );
 
