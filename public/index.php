@@ -60,8 +60,8 @@ $router->get('/admin/list-device', [deviceController::class, 'listDevice']);
 //$router->post('/user/edit', [userController::class, 'user_edit']);
 $router->get('/user', [statisticsController::class, 'showStats']);
 
-$router->get("/user/settings", [userController::class, 'settings']);
-$router->post("/user/settings", [userController::class, 'settings']);
+$router->get("/user/settings", [userController::class, 'settingsUser']);
+$router->post("/user/settings", [userController::class, 'settingsUser']);
 
 
 $router->get('/user/add-invoice', [userController::class, 'addInvoice']);
@@ -78,8 +78,8 @@ $router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);
 // Auditor urls
 $router->get('/auditor', [statisticsController::class, 'showStats']);
 
-$router->get("/auditor/settings", [userController::class, 'settings']);
-$router->post("/auditor/settings", [userController::class, 'settings']);
+$router->get("/auditor/settings", [userController::class, 'settingsUser']);
+$router->post("/auditor/settings", [userController::class, 'settingsUser']);
 
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/auditor/list-invoice', [invoiceController::class, 'showInvoice']);

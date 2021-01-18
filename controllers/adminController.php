@@ -15,20 +15,22 @@ class adminController
     {
         Permissions::check("admin");
         $user = new User();
-        if (!$user->getUserLogin($_POST['login'])) {
-            if ($_POST) {
-                $dataRegister = $_POST;
-                $user = new User();
-                $user->registerUser($dataRegister);
-                Redirect::to("/");
+        if (isset($_POST['login'])) {
+            if (!$user->getUserLogin($_POST['login'])) {
+                if ($_POST) {
+                    $dataRegister = $_POST;
+                    $user = new User();
+                    $user->registerUser($dataRegister);
+                    Redirect::to("/");
+                }
+            } else {
+                $registerInfo = "Użytkownik o takim loginie już istnieje!";
             }
-        } else {
-            $registerInfo = "Użytkownik o takim loginie już istnieje!";
         }
 
         $router->render("pages/admin/register",  [
             'page_name' => 'register',
-            'registerInfo' => $registerInfo
+            'registerInfo' => $registerInfo ?? null
         ]);
     }
 
@@ -79,7 +81,7 @@ class adminController
 
         $router->render("pages/admin/usersList", [
             'page_name' => 'usersList',
-            'editInfo' => $editInfo,
+            'editInfo' => $editInfo ?? null,
             $results
         ]);
     }
@@ -110,10 +112,10 @@ class adminController
         }
         $results = $user->getUser($_SESSION["user_id"]);
 
-        $router->render("pages/admin/settings", [
+        $router->render("pages/components/settings", [
             'page_name' => 'settings',
             $results,
-            'settings_info' => $settingsInfo
+            'settings_info' => $settingsInfo ?? null
         ]);
     }
 }

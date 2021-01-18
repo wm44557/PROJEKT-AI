@@ -5,7 +5,7 @@
 
         <h1>Lista Użytkowników</h1>
         <div class="stats-box">
-            <table class="form-table align">
+            <table class="form-table align spacing">
                 <thead>
                     <tr>
                         <th>ID</th>

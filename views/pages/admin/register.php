@@ -15,7 +15,7 @@
         <option value="auditor">
     </datalist>
     <br><br>
-    <input class="button secondary small" class="submit" type="submit" value="Wyślij">
+    <input class="button secondary" class="submit" type="submit" value="Zarejstruj użytkownika">
 
 </form>
 <br>
