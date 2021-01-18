@@ -14,14 +14,24 @@ class adminController
     public function registerUser($router)
     {
         Permissions::check("admin");
-        if($_POST) {
-            $dataRegister = $_POST;
-            dump($dataRegister);
-            $user = new User();
-            $user->registerUser($dataRegister);
-            Redirect::to("/");
+        $user = new User();
+        if (isset($_POST['login'])) {
+            if (!$user->getUserLogin($_POST['login'])) {
+                if ($_POST) {
+                    $dataRegister = $_POST;
+                    $user = new User();
+                    $user->registerUser($dataRegister);
+                    Redirect::to("/");
+                }
+            } else {
+                $registerInfo = "Użytkownik o takim loginie już istnieje!";
+            }
         }
-        $router->render("pages/admin/register");
+
+        $router->render("pages/admin/register",  [
+            'page_name' => 'register',
+            'registerInfo' => $registerInfo ?? null
+        ]);
     }
 
     public function addInvoice($router)
@@ -31,6 +41,81 @@ class adminController
             'page_name' => 'add-invoice'
         ]);
     }
+    public function usersList($router)
+    {
+        Permissions::check(["admin"]);
+        $user = new User();
+        $results = $user->listUsers();
+        $router->render("pages/admin/usersList", [
+            'page_name' => 'usersList',
+            $results
+        ]);
+    }
+    public function userEdit($router)
+    {
+        Permissions::check(["admin"]);
+        $user = new User();
+        $results = $user->getUser($_POST["userID"]);
+
+        $_SESSION['editedLogin'] = $results->login;
+
+        $router->render("pages/admin/userEdit", [
+            'page_name' => 'userEdit',
+            $results
+        ]);
+    }
+
+    public function userEdited($router)
+    {
+        Permissions::check(["admin"]);
+
+        $user = new User();
+        if (!$user->getUserLogin($_POST['login']) || $_POST['login'] == $_SESSION['editedLogin']) {
+            $user->editUser($_POST);
+            $editInfo = "Udało się edytować dane użytkownika";
+        } else {
+            $editInfo = "Użytkownik o takim loginie już istnieje!";
+        }
+        $results = $user->listUsers();
 
 
+        $router->render("pages/admin/usersList", [
+            'page_name' => 'usersList',
+            'editInfo' => $editInfo ?? null,
+            $results
+        ]);
+    }
+
+    public function deleteUser($router)
+    {
+        Permissions::check(["admin"]);
+        $user = new User();
+        $user->deleteUser($_SESSION['editedUserId']);
+        $editInfo = "Użytkownik został usunięty";
+
+        $results = $user->listUsers();
+        $router->render("pages/admin/usersList", [
+            'page_name' => 'usersList',
+            'editInfo' => $editInfo,
+            $results
+        ]);
+    }
+    public function settingsUser($router)
+    {
+        Permissions::check(["admin"]);
+        $user = new User();
+        $results = $user->getUser($_SESSION["user_id"]);
+
+        if ($_POST) {
+            $user->editUser($_POST);
+            $settingsInfo = 'Pomyślnie zmieniono dane konta';
+        }
+        $results = $user->getUser($_SESSION["user_id"]);
+
+        $router->render("pages/components/settings", [
+            'page_name' => 'settings',
+            $results,
+            'settingsInfo' => $settingsInfo ?? null
+        ]);
+    }
 }

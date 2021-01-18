@@ -26,7 +26,6 @@ class loginController
                 $_SESSION['user_id'] = $result->id;
                 $_SESSION['user_login'] = $result->login;
                 $_SESSION['user_role'] = $result->role;
-
             } else {
                 $errors['auth'] = "Niepoprawny login lub hasło.";
             }
@@ -50,25 +49,19 @@ class loginController
     public function admin($router)
     {
         Permissions::check("admin");
-        $router->render('pages/admin/panel', [
-        ]);
+        $router->render('pages/admin/panel', []);
     }
 
     public function user($router)
     {
         Permissions::check("user");
-        $router->render('pages/user/panel', [
-        ]);
+        $router->render('pages/user/panel', []);
     }
 
     public function auditor($router)
     {
         Permissions::check("auditor");
-        $router->render('pages/auditor/panel', [
+        $router->render('pages/user/panel', [
         ]);
     }
-
-
-
-
 }
