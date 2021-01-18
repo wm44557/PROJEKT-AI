@@ -27,7 +27,7 @@ class auditorController
         $router->render("pages/components/settings", [
             'page_name' => 'settings',
             $results,
-            'settings_info' => $settingsInfo ?? null
+            'settingsInfo' => $settingsInfo ?? null
         ]);
     }
 }
