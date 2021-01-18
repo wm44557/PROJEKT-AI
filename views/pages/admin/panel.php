@@ -1,3 +1,7 @@
+<?php if (isset($_SESSION['alert'])): ?>
+    <div class="alertbox"><p><?php echo $_SESSION['alert']?></p><i class="material-icons">close</i></div>
+    <?php unset($_SESSION['alert']); ?>
+<?php endif ?>
 <div class="box">
     <h1>Panel Administratora</h1>
     <div class="boxAdmin">
@@ -66,4 +70,16 @@
             }
         }, 70)
     })
+
+    const alert = document.querySelector('.alertbox');
+    const closeAlert = document.querySelector('.alertbox i')
+
+    if (alert){
+        closeAlert.addEventListener('click', () => {
+            alert.remove();
+        })
+        setTimeout( () => {
+            alert.remove();
+        }, 5000)
+    }
 </script>

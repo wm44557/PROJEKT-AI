@@ -9,7 +9,7 @@
     <input class="form-input" type="text" name="login" value="<?php echo  $params[0]->login ?>"><br><br>
 
     <label for="password">HASŁO: </label>
-    <input class="form-input" type="text" name="password" value="<?php echo  $params[0]->password ?>"><br><br>
+    <input class="form-input" type="password" name="password" value="<?php echo  $params[0]->password ?>"><br><br>
 
     <label for="email">EMAIL: </label>
     <input class="form-input" type="text" name="email" value="<?php echo  $params[0]->email ?>"><br><br>

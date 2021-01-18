@@ -209,7 +209,7 @@
             <input type="number" name="sumBrutto" placeholder="Wprowadź wartość brutto">
         </label>
     </div>
-    <input style="grid-column: span 2; justify-self: center; margin-top: 2rem;" class="button primary big" type="submit" value="Wyślij"><br>
+    <input class="button primary big span-2" type="submit" value="Wyślij"><br>
 </form>
 <br>
 

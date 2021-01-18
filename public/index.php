@@ -12,6 +12,7 @@ use app\utility\Router;
 use app\controllers\loginController;
 use app\controllers\adminController;
 use app\controllers\userController;
+use app\controllers\auditorController;
 use app\controllers\invoices\deviceController;
 use app\controllers\invoices\invoiceController;
 use app\controllers\invoices\licenceController;
@@ -78,8 +79,8 @@ $router->post('/user/deletefile', [invoiceController::class, 'deleteFile']);
 // Auditor urls
 $router->get('/auditor', [statisticsController::class, 'showStats']);
 
-$router->get("/auditor/settings", [userController::class, 'settingsUser']);
-$router->post("/auditor/settings", [userController::class, 'settingsUser']);
+$router->get('/auditor/settings', [auditorController::class, 'settingsUser']);
+$router->post('/auditor/settings', [auditorController::class, 'settingsUser']);
 
 $router->get('/auditor/list-invoice', [invoiceController::class, 'listInvoice']);
 $router->post('/auditor/list-invoice', [invoiceController::class, 'showInvoice']);

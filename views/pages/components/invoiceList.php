@@ -36,11 +36,12 @@
                     </select>
                 </label>
             </div>
-            <input style="grid-column: span 2; justify-self: end;" class="button primary small" type="submit" value="Szukaj.." name="Result">
+            <input class="button primary small span-2-end" type="submit" value="Szukaj.." name="Result">
         </div>
     </form>
 
     <br>
+    <div class="table-container">
     <table class="form-table spacing">
         <thead>
         <tr>
@@ -70,6 +71,7 @@
         ?>
         </tbody>
     </table>
+    </div>
     <br>
     <div class="pagination-box">
         <h4>Paginacja</h4>
