@@ -45,23 +45,26 @@ class Invoice
         $counter=(int)$dataPost['licencesCount'];
         for($i=1; $i<=$counter; $i++){
             if (isset($dataPost['licenceSku-'.$i])){
-                $this->conn->query(
-                    "INSERT INTO 
+                if ($dataPost['licenceSku-'.$i]!=""){
+                    $this->conn->query(
+                        "INSERT INTO 
                          `licences`(`sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `valid_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id`) 
                          VALUES (:sku,:name,:description,:serialNumber,:buyDate,:warranty,:valid,:priceNetto,:vat,:priceBrutto,:owner,:invoiceId)");
-                $this->conn->bindValue('sku', $dataPost['licenceSku-'.$i]);
-                $this->conn->bindValue("name", $dataPost['licenceName-'.$i]);
-                $this->conn->bindValue("serialNumber", $dataPost['licenceSerial-'.$i]);
-                $this->conn->bindValue("description", $dataPost['licenceDescription-'.$i]);
-                $this->conn->bindValue("buyDate", $dataPost['licenceBuyDate-'.$i]);
-                $this->conn->bindValue("warranty", $dataPost['licenceWarrantyDate-'.$i]);
-                $this->conn->bindValue("valid", $dataPost['licenceValidTo-'.$i]);
-                $this->conn->bindValue("priceNetto", $dataPost['licenceNetto-'.$i]);
-                $this->conn->bindValue("vat", $dataPost['licenceVat-'.$i]);
-                $this->conn->bindValue("priceBrutto", $dataPost['licenceBrutto-'.$i]);
-                $this->conn->bindValue("owner", $dataPost['licenceWhoUses-'.$i]);
-                $this->conn->bindValue("invoiceId", $invoiceId->id);
-                $this->conn->execute();
+                    $this->conn->bindValue('sku', $dataPost['licenceSku-'.$i]);
+                    $this->conn->bindValue("name", $dataPost['licenceName-'.$i]);
+                    $this->conn->bindValue("serialNumber", $dataPost['licenceSerial-'.$i]);
+                    $this->conn->bindValue("description", $dataPost['licenceDescription-'.$i]);
+                    $this->conn->bindValue("buyDate", $dataPost['licenceBuyDate-'.$i]);
+                    $this->conn->bindValue("warranty", $dataPost['licenceWarrantyDate-'.$i]);
+                    $this->conn->bindValue("valid", $dataPost['licenceValidTo-'.$i]);
+                    $this->conn->bindValue("priceNetto", $dataPost['licenceNetto-'.$i]);
+                    $this->conn->bindValue("vat", $dataPost['licenceVat-'.$i]);
+                    $this->conn->bindValue("priceBrutto", $dataPost['licenceBrutto-'.$i]);
+                    $this->conn->bindValue("owner", $dataPost['licenceWhoUses-'.$i]);
+                    $this->conn->bindValue("invoiceId", $invoiceId->id);
+                    $this->conn->execute();
+                }
+
             }
         }
 
@@ -69,22 +72,24 @@ class Invoice
         $counter=(int)$dataPost['equipementCount'];
         for($i=1; $i<=$counter; $i++){
             if (isset($dataPost['equipementSku-'.$i])){
-                $this->conn->query(
-                    "INSERT INTO 
+                if ($dataPost['equipementSku-'.$i] != ""){
+                    $this->conn->query(
+                        "INSERT INTO 
                          `equipement`(`sku`, `name`, `description`, `serial_number`, `buy_date`, `warranty_to`, `price_netto`, `vat`,`price_brutto`, `who_uses`, `invoice_id`) 
                          VALUES (:sku,:name,:description,:serialNumber,:buyDate,:warranty,:priceNetto,:vat,:priceBrutto,:owner,:invoiceId)");
-                $this->conn->bindValue('sku', $dataPost['equipementSku-'.$i]);
-                $this->conn->bindValue("name", $dataPost['equipementName-'.$i]);
-                $this->conn->bindValue("serialNumber", $dataPost['equipementSerial-'.$i]);
-                $this->conn->bindValue("description", $dataPost['equipementDescription-'.$i]);
-                $this->conn->bindValue("buyDate", $dataPost['equipementBuyDate-'.$i]);
-                $this->conn->bindValue("warranty", $dataPost['equipementWarrantyDate-'.$i]);
-                $this->conn->bindValue("priceNetto", $dataPost['equipementNetto-'.$i]);
-                $this->conn->bindValue("vat", $dataPost['equipementVat-'.$i]);
-                $this->conn->bindValue("priceBrutto", $dataPost['equipementBrutto-'.$i]);
-                $this->conn->bindValue("owner", $dataPost['equipementWhoUses-'.$i]);
-                $this->conn->bindValue("invoiceId", $invoiceId->id);
-                $this->conn->execute();
+                    $this->conn->bindValue('sku', $dataPost['equipementSku-'.$i]);
+                    $this->conn->bindValue("name", $dataPost['equipementName-'.$i]);
+                    $this->conn->bindValue("serialNumber", $dataPost['equipementSerial-'.$i]);
+                    $this->conn->bindValue("description", $dataPost['equipementDescription-'.$i]);
+                    $this->conn->bindValue("buyDate", $dataPost['equipementBuyDate-'.$i]);
+                    $this->conn->bindValue("warranty", $dataPost['equipementWarrantyDate-'.$i]);
+                    $this->conn->bindValue("priceNetto", $dataPost['equipementNetto-'.$i]);
+                    $this->conn->bindValue("vat", $dataPost['equipementVat-'.$i]);
+                    $this->conn->bindValue("priceBrutto", $dataPost['equipementBrutto-'.$i]);
+                    $this->conn->bindValue("owner", $dataPost['equipementWhoUses-'.$i]);
+                    $this->conn->bindValue("invoiceId", $invoiceId->id);
+                    $this->conn->execute();
+                }
             }
         }
 
