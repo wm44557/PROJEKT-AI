@@ -102,6 +102,7 @@ class Invoice
         $this->conn = new Database();
         //dump($_GET);
         //$LIMIT słuzy do ustawiania ilosci rekordów na jednej stronie
+
         $limit = 5;
         if (isset($_GET["page"])) {
             $currentPage = $_GET["page"];
@@ -144,6 +145,18 @@ class Invoice
                 $queryRow = "AND i.invoice_number LIKE '%$searchText%'";
                 $searchRowInCount="i.invoice_number";
         }
+        $invoiceType=$_GET['invoice_type'] ?? 'all';
+        switch($invoiceType)
+        {
+            case 'buy':
+                $queryInvoiceType='AND i.type = "buy"';
+                break;
+            case 'sale':
+                $queryInvoiceType='AND i.type = "sale"';
+                break;
+            default:
+                $queryInvoiceType='';
+        }
 
         $this->conn->query("
             SELECT COUNT($searchRowInCount) as 'countRecords' 
@@ -152,6 +165,7 @@ class Invoice
             ON i.contractor_id=c.id
             WHERE $searchRowInCount
             LIKE '%$searchText%' 
+            $queryInvoiceType
             $dateFiltr"
         );
 
@@ -162,11 +176,12 @@ class Invoice
 
         //Pobranie z bazy wszystkich faktur
         $this->conn->query(
-            "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice, i.sum_brutto
+            "SELECT i.ID, i.invoice_number, c.name, c.vat_id, i.date_of_invoice,i.type, i.sum_brutto
                 FROM invoices AS i, contractors AS c
                 WHERE i.contractor_id=c.id
                 $queryRow
                 $dateFiltr
+                $queryInvoiceType
                 GROUP BY i.id
                 LIMIT $startFrom, $limit"
         );

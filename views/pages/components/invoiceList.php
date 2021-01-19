@@ -30,9 +30,10 @@
             <div>
                 <label>
                     Rodzaj faktury:
-                    <select class="form-input" name="MyRadio">
-                        <option value="First">Kupna</option>
-                        <option value="Second">Sprzedaży</option>
+                    <select class="form-input" name="invoice_type" >
+                        <option value="all">Wszystkie</option>
+                        <option value="buy">Kupna</option>
+                        <option value="sale">Sprzedaży</option>
                     </select>
                 </label>
             </div>
@@ -49,6 +50,7 @@
             <th>Kontrahent</th>
             <th>NIP</th>
             <th>Data wystawienia faktury</th>
+            <th>Typ</th>
             <th>Cena Brutto</th>
             <th>Szczegóły</th>
         </tr>
@@ -62,6 +64,7 @@
             echo '<td>' . $row->name . '</td>';
             echo '<td>' . $row->vat_id . '</td>';
             echo '<td>' . $row->date_of_invoice . '</td>';
+            echo '<td>' . $row->type . '</td>';
             echo '<td>' . $row->sum_brutto . '</td>';
             echo '<td><a href="'. STARTING_URL . '/' . $_SESSION['user_role'] . '/show-invoice?invoiceId=' . $row->ID . '"' . '>
             <button class="button primary small">Więcej</button>
@@ -82,6 +85,7 @@
                 $searchSelect = $_GET['searchSelect'] ?? "";
                 $since=$_GET['since_date'] ?? "";
                 $to=$_GET['to_date'] ?? "";
+                $invoiceType=$_GET['invoice_type'] ?? "";
             }
 
 
@@ -97,7 +101,7 @@
                         $class = "class='bold'";
                     }
                 }
-                echo " <a " . $class . "href='?page=" . $i . "&searchSelect=".$searchSelect. "&search=".$search."&since_date=".$since."&to_date=".$to."'>" . $i . "</a>";
+                echo " <a " . $class . "href='?page=" . $i . "&searchSelect=".$searchSelect. "&search=".$search."&since_date=".$since."&to_date=".$to."&invoice_type=".$invoiceType."'>" . $i . "</a>";
             }
             ?>
         </div>
@@ -130,24 +134,23 @@
 
 
     const selector = document.querySelector('select[name="searchSelect"]');
-    const selectorRadio = document.querySelector('select[name="MyRadio"]');
+
 
     const url_str = window.location;
     const url = new URL(url_str);
 
     const searchBy = url.searchParams.get("searchSelect");
-    const radio = url.searchParams.get("MyRadio");
+
 
     if (searchBy){
         selector.selectedIndex = searchOptions[searchBy];
     }
-    if (radio){
-        selectorRadio.selectedIndex = radioOptions[radio];
-    }
+
 
     function changeSelector(){
         const search = document.querySelector('input[name="search"]');
         search.placeholder = OPTIONS[selector.selectedIndex];
     }
+
     changeSelector();
 </script>

@@ -14,7 +14,6 @@ class userController
 
     public function addInvoice($router)
     {
-
         Permissions::check("user");
         $router->render("pages/components/invoiceForm", [
             'page_name' => 'add-invoice'

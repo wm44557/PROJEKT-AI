@@ -275,10 +275,8 @@ Strona logowania
     align-items: center;
     background: rgba(255, 255, 255, 0.30);
     box-shadow: 0 8px 32px 0 rgba(165, 165, 165, 0.37);
-
-    /*backdrop-filter: blur( 4.5px );*/
-    /*-webkit-backdrop-filter: blur( 4.5px );*/
-
+    backdrop-filter: blur(4.5px);
+    -webkit-backdrop-filter: blur(4.5px);
     border-radius: 10px;
     padding: 3rem 2rem;
     width: 300px;
@@ -300,7 +298,6 @@ Pages layout
     display: flex;
     background: rgba(255, 255, 255, 0.30);
     box-shadow: 0 8px 32px 0 rgba(165, 165, 165, 0.37);
-
     height: 100vh;
 }
 
