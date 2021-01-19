@@ -250,13 +250,10 @@ Strona logowania
     align-items: center;
     background: rgba(255, 255, 255, 0.30);
     box-shadow: 0 8px 32px 0 rgba(165, 165, 165, 0.37);
-<<<<<<< HEAD
+
     /*backdrop-filter: blur( 4.5px );*/
     /*-webkit-backdrop-filter: blur( 4.5px );*/
-=======
-    backdrop-filter: blur(4.5px);
-    -webkit-backdrop-filter: blur(4.5px);
->>>>>>> afb75bd321c67d2aea2642494ff4d95248303ee6
+
     border-radius: 10px;
     padding: 3rem 2rem;
     width: 300px;
@@ -279,13 +276,10 @@ Pages layout
     grid-template-columns: 250px 1fr;
     background: rgba(255, 255, 255, 0.30);
     box-shadow: 0 8px 32px 0 rgba(165, 165, 165, 0.37);
-<<<<<<< HEAD
+
     /*backdrop-filter: blur( 3px );*/
     /*-webkit-backdrop-filter: blur( 3px );*/
-=======
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
->>>>>>> afb75bd321c67d2aea2642494ff4d95248303ee6
+
     height: 100vh;
 }
 
