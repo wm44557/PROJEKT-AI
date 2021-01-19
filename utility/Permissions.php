@@ -14,7 +14,7 @@ class Permissions
             $role = array($role);
         }
         if (isset($_SESSION['user_role'])){
-            $url_user = explode('/', $_SERVER['REQUEST_URI'])[4];
+            $url_user = explode('/', $_SERVER['REQUEST_URI'])[2];
             if ($url_user != $_SESSION['user_role']){
                 Redirect::to("/" . $_SESSION['user_role']);
             }

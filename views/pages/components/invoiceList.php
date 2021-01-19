@@ -132,15 +132,26 @@
         "Second": 1,
     }
 
+    const typesOptions = {
+        "all": 0,
+        "buy": 1,
+        "sale": 2,
+    }
+
 
     const selector = document.querySelector('select[name="searchSelect"]');
+    const typeSelector = document.querySelector('select[name="invoice_type"]');
 
 
     const url_str = window.location;
     const url = new URL(url_str);
 
     const searchBy = url.searchParams.get("searchSelect");
+    const searchType = url.searchParams.get("invoice_type");
 
+    if (searchType){
+        typeSelector.selectedIndex = typesOptions[`${searchType}`];
+    }
 
     if (searchBy){
         selector.selectedIndex = searchOptions[searchBy];
