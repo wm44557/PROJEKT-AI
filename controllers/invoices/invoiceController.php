@@ -17,6 +17,7 @@ class invoiceController
             $dataPost = $_POST;
             $invoice = new Invoice();
             $invoice->addInvoice($dataPost);
+            $_SESSION['alert'] = "Pomyślnie dodano fakturę.";
             Redirect::to("/");
         }
     }

@@ -13,7 +13,7 @@
     <input class="form-input" type="text" name="login" value="<?php echo  $params[0]->login ?>" readonly><br><br>
 
     <label for="password">HASŁO: </label>
-    <input class="form-input" type="text" name="password" value="<?php echo  $params[0]->password ?>"><br><br>
+    <input class="form-input" type="password" name="password" value="<?php echo  $params[0]->password ?>"><br><br>
 
     <label for="email">EMAIL: </label>
     <input class="form-input" type="text" name="email" value="<?php echo  $params[0]->email ?>"><br><br>
@@ -27,4 +27,4 @@
 
 </form>
 <br>
-<a href="<?php echo STARTING_URL ?>/admin"><button class="button secondary small">Wróć</button></a>
+<a href="<?php echo STARTING_URL . "/" . $_SESSION['user_role']?>"><button class="button secondary small">Wróć</button></a>

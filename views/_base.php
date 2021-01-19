@@ -12,11 +12,12 @@
 
 <body>
     <div class="background">
-        <div class="container">
-            <?php if (isset($_SESSION["user_role"]))
-                if ($_SESSION["user_role"] == "user" || $_SESSION["user_role"] == "admin" || $_SESSION["user_role"] == "auditor") :
+        <?php if (isset($_SESSION["user_role"]))
+        if ($_SESSION["user_role"] == "user" || $_SESSION["user_role"] == "admin" || $_SESSION["user_role"] == "auditor") :
 
-            ?>
+        ?>
+        <div class="mobile-hamburger"><i class="material-icons">menu</i></div>
+        <div class="container">
                 <nav class="nav">
                     <div class="nav-logo">
                         <a href="<?php echo STARTING_URL ?>">
@@ -56,7 +57,7 @@
                             </li>
                         </a>
                         <a href="<?php echo STARTING_URL . '/' . $_SESSION['user_role'] ?>/settings">
-                            <li class="nav-menu__item">
+                            <li class="nav-menu__item <?php echo $page_name == 'settings' ?  "active" : "" ?>">
                                 <i class="material-icons">settings</i>
                                 <p>Ustawienia użytkownika</p>
                             </li>
@@ -66,7 +67,8 @@
                 </nav>
                 <div class="content">
                 <?php else : ?>
-                    <div class="content" style="grid-column: span 2; width: 100%;">
+                    <div class="container" style="flex-direction: column">
+                        <div class="content">
                     <?php endif; ?>
 
 
@@ -76,6 +78,15 @@
                 </div>
         </div>
     </div>
+<script>
+    const button = document.querySelector('.mobile-hamburger');
+    const container = document.querySelector('.container')
+    button.addEventListener('click', () => {
+        console.log('click');
+        container.classList.toggle('show-nav');
+    })
+</script>
 </body>
+
 
 </html>
